@@ -3914,7 +3914,7 @@
     </div>
     <div class="adm-stats" id="adm-stats">
       <div class="adm-stat"><div class="asn" id="adm-total">0</div><div class="asl">Réservations</div></div>
-      <div class="adm-stat"><div class="asn" id="adm-pending">0</div><div class="asl">En Attente</div></div>
+      <div class="adm-stat"><div class="asn" id="adm-pending">0</div><div class="asl">Utilisateurs</div></div>
       <div class="adm-stat"><div class="asn" id="adm-players">0</div><div class="asl">Joueurs Demandés</div></div>
       <div class="adm-stat"><div class="asn" id="adm-today">0</div><div class="asl">Aujourd'hui</div></div>
     </div>
@@ -3927,12 +3927,13 @@
         <thead>
           <tr>
             <th>Référence</th>
+            <th>Utilisateur</th>
             <th>Joueur</th>
-            <th>Contact</th>
-            <th>Date</th>
+            <th>Club</th>
+            <th>Date Évènt</th>
             <th>Type</th>
             <th>Valeur</th>
-            <th>Statut</th>
+            <th>Réservé le</th>
           </tr>
         </thead>
         <tbody id="adm-tbody">
@@ -3989,6 +3990,7 @@
       if (p) { p.classList.add('active'); window.scrollTo(0, 0); setTimeout(initRv, 80); }
       document.querySelectorAll('.nls a').forEach(function (a) { a.classList.remove('active'); });
       var el = document.getElementById('n-' + pg); if (el) el.classList.add('active');
+      if (pg === 'admin') { setTimeout(loadAdminBookings, 300); }
     }
     function pickP(name, val, wage, club, k) {
       sn = name; sv = val; sw = wage; sc = club; sk = k;
@@ -4141,54 +4143,74 @@
     document.getElementById('clubModal').addEventListener('click', function(e){ if(e.target===this) closeClubModal(); });
 
     // =============================================
-    // ADMIN DASHBOARD
+    // ADMIN DASHBOARD — loads from Firestore
     // =============================================
-    var localBookings = JSON.parse(localStorage.getItem('prokick_bookings') || '[]');
-
-    function saveBookingLocally(data) {
-      localBookings.push(data);
-      localStorage.setItem('prokick_bookings', JSON.stringify(localBookings));
-    }
-
     function loadAdminBookings() {
       var tbody = document.getElementById('adm-tbody');
-      var allBookings = [];
-      try { allBookings = JSON.parse(localStorage.getItem('prokick_bookings') || '[]'); } catch(e){}
+      tbody.innerHTML = '<tr><td colspan="8" class="adm-empty" style="opacity:.5;">Chargement depuis Firebase...</td></tr>';
 
-      document.getElementById('adm-total').textContent = allBookings.length;
-      document.getElementById('adm-pending').textContent = allBookings.filter(function(b){ return b.status==='pending'; }).length || allBookings.length;
-      var players = {};
-      allBookings.forEach(function(b){ if(b.player) players[b.player]=1; });
-      document.getElementById('adm-players').textContent = Object.keys(players).length;
-      var today = new Date().toDateString();
-      document.getElementById('adm-today').textContent = allBookings.filter(function(b){ return b.createdAt && new Date(b.createdAt).toDateString()===today; }).length;
-
-      if (!allBookings.length) {
-        tbody.innerHTML = '<tr><td colspan="7" class="adm-empty">Aucune réservation pour l\'instant. Les réservations confirmées apparaîtront ici.</td></tr>';
+      // db and auth are defined after Firebase loads — check they exist
+      if (typeof db === 'undefined') {
+        tbody.innerHTML = '<tr><td colspan="8" class="adm-empty">Firebase non initialisé. Revenez dans un instant.</td></tr>';
         return;
       }
-      tbody.innerHTML = allBookings.slice().reverse().map(function(b){
-        return '<tr><td><code style="color:var(--g);font-size:.7rem;">'+( b.reference||'—')+'</code></td><td>'+( b.player||'—')+'</td><td><span style="color:var(--gr)">'+( b.bookerName||'—')+'</span><br><small style="color:var(--gr);font-size:.65rem;">'+(b.bookerEmail||'')+'</small></td><td>'+(b.date||'—')+'</td><td>'+(b.type||'—')+'</td><td style="color:var(--g)">€'+(b.value||'—')+'</td><td><span class="adm-badge pend">En Attente</span></td></tr>';
-      }).join('');
-    }
 
-    // Override submitForm to also save locally for admin
-    var _origSubmitFormWithFirebase = typeof submitFormWithFirebase === 'function' ? submitFormWithFirebase : null;
-    function patchSubmitForAdmin() {
-      var origSF = submitForm;
-      submitForm = function() {
-        var n = document.getElementById('fn').value.trim();
-        var e = document.getElementById('fe').value.trim();
-        var d = document.getElementById('fd').value;
-        var t = document.getElementById('ft').value;
-        if (sn && n && e && d && t) {
-          var ref = 'PKN-' + Math.floor(100000 + Math.random() * 900000);
-          saveBookingLocally({ reference: ref, player: sn, value: sv, wage: sw, club: sc, bookerName: n, bookerEmail: e, date: d, type: t, status: 'pending', createdAt: new Date().toISOString() });
-        }
-        origSF.call(this);
-      };
+      db.collection('bookings')
+        .orderBy('createdAt', 'desc')
+        .limit(100)
+        .get()
+        .then(function(snapshot) {
+          var bookings = [];
+          snapshot.forEach(function(doc) { bookings.push(Object.assign({ _id: doc.id }, doc.data())); });
+
+          // Stats
+          document.getElementById('adm-total').textContent = bookings.length;
+          var uniqueUsers = {};
+          var uniquePlayers = {};
+          var today = new Date().toDateString();
+          var todayCount = 0;
+          bookings.forEach(function(b) {
+            if (b.userId) uniqueUsers[b.userId] = 1;
+            if (b.playerName) uniquePlayers[b.playerName] = 1;
+            if (b.createdAt && b.createdAt.toDate && b.createdAt.toDate().toDateString() === today) todayCount++;
+          });
+          document.getElementById('adm-pending').textContent = Object.keys(uniqueUsers).length;
+          document.getElementById('adm-players').textContent = Object.keys(uniquePlayers).length;
+          document.getElementById('adm-today').textContent = todayCount;
+
+          // Update stat labels
+          var statLabels = document.querySelectorAll('#adm-stats .asl');
+          if (statLabels[1]) statLabels[1].textContent = 'Utilisateurs';
+
+          if (!bookings.length) {
+            tbody.innerHTML = '<tr><td colspan="8" class="adm-empty">Aucune réservation pour l\'instant.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = bookings.map(function(b) {
+            var dateStr = '—';
+            if (b.createdAt && b.createdAt.toDate) {
+              var d = b.createdAt.toDate();
+              dateStr = d.toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+            }
+            var avatar = (b.bookerName || b.userEmail || '?').charAt(0).toUpperCase();
+            var emailShort = b.userEmail || b.bookerEmail || '—';
+            return '<tr>' +
+              '<td><code style="color:var(--g);font-size:.68rem;">' + (b.reference || '—') + '</code></td>' +
+              '<td><div style="display:flex;align-items:center;gap:.5rem;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g2));display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--d);flex-shrink:0;">' + avatar + '</div><div><div style="font-size:.75rem;">' + (b.bookerName || '—') + '</div><div style="font-size:.62rem;color:var(--gr);">' + emailShort + '</div></div></div></td>' +
+              '<td style="color:var(--g);font-weight:600;">' + (b.playerName || '—') + '</td>' +
+              '<td style="color:var(--gr);font-size:.72rem;">' + (b.playerClub || '—') + '</td>' +
+              '<td style="font-size:.72rem;">' + (b.eventDate || '—') + '</td>' +
+              '<td style="font-size:.72rem;">' + (b.eventType || '—') + '</td>' +
+              '<td style="color:var(--g);font-size:.72rem;">€' + (b.playerValue || '—') + '</td>' +
+              '<td style="font-size:.68rem;color:var(--gr);">' + dateStr + '</td>' +
+            '</tr>';
+          }).join('');
+        })
+        .catch(function(err) {
+          tbody.innerHTML = '<tr><td colspan="8" class="adm-empty" style="color:var(--r);">Erreur Firestore : ' + err.message + '</td></tr>';
+        });
     }
-    setTimeout(patchSubmitForAdmin, 500);
 
   </script>
   <!-- Firebase SDK (compat v9) -->
@@ -4403,6 +4425,7 @@ function submitFormWithFirebase() {
     if (user) {
         db.collection('bookings').add({
             userId: user.uid,
+            userEmail: user.email || '',
             playerName: sn,
             playerValue: sv,
             playerWage: sw,
