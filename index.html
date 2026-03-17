@@ -1659,6 +1659,69 @@
       opacity: 1;
       transform: translateY(0);
     }
+    /* ========== CLUB HISTORY MODAL ========== */
+    .club-modal-bg { position:fixed;inset:0;background:rgba(4,8,15,.92);z-index:1100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s; }
+    .club-modal-bg.on { opacity:1;pointer-events:all; }
+    .club-modal { background:var(--md);border:1px solid var(--nb);border-radius:14px;width:90%;max-width:560px;max-height:80vh;overflow-y:auto;padding:2rem 1.6rem;position:relative;animation:fu .3s; }
+    .cmbadge { display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:100px;font-family:'Oswald',sans-serif;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.8rem; }
+    .cmtitle { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;color:var(--g);margin-bottom:.4rem; }
+    .cmsubt { font-size:.78rem;color:var(--gr);margin-bottom:1.2rem;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase; }
+    .cmclose { position:absolute;top:1rem;right:1rem;width:28px;height:28px;border-radius:50%;background:rgba(240,192,64,.1);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gr);font-size:.9rem;transition:background .2s,color .2s; }
+    .cmclose:hover { background:var(--r);color:#fff; }
+    .cmstat { display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem; }
+    .cmst { background:rgba(240,192,64,.08);border:1px solid var(--b);border-radius:6px;padding:.4rem .8rem;text-align:center; }
+    .cmst span { display:block;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--g); }
+    .cmst small { font-size:.55rem;color:var(--gr);letter-spacing:1px;text-transform:uppercase; }
+    .cmhist { font-size:.82rem;line-height:1.75;color:var(--w);opacity:.88; }
+    .cmhist p { margin-bottom:.8rem; }
+    .cmchev { position:absolute;bottom:.6rem;right:.8rem;opacity:.25;font-size:.65rem;font-family:'Oswald',sans-serif;letter-spacing:1px; }
+    .cdet { cursor:pointer;transition:background .2s; }
+    .cdet:hover .cnm { color:var(--g); }
+    .cdet-hint { font-size:.52rem;color:var(--g);opacity:.7;letter-spacing:1px;text-transform:uppercase;font-family:'Oswald',sans-serif;margin-top:2px; }
+
+    /* ========== HISTOIRE PAGE ========== */
+    #histoire-page .hph { min-height:220px;background:linear-gradient(135deg,#002395 0%,#06214e 60%,#8b0000 100%);display:flex;align-items:flex-end;padding:2rem 4vw 1.4rem;position:relative;overflow:hidden; }
+    .hist-hero-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,8vw,4.5rem);letter-spacing:5px;line-height:.9;position:relative;z-index:2; }
+    .hist-hero-title span { color:var(--g); }
+    .hist-section { padding:2.4rem 4vw 1rem;max-width:820px;margin:0 auto; }
+    .hist-section h2 { font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;color:var(--g);margin-bottom:.5rem; }
+    .hist-section p { font-size:.84rem;line-height:1.78;color:var(--w);opacity:.88;margin-bottom:1rem; }
+    .hist-timeline { position:relative;padding-left:2.2rem;border-left:2px solid var(--b);margin:1.4rem 0 2rem; }
+    .hist-event { position:relative;margin-bottom:1.4rem; }
+    .hist-event::before { content:'';position:absolute;left:-2.57rem;top:.25rem;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--d); }
+    .hist-year { font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:var(--g);letter-spacing:2px; }
+    .hist-desc { font-size:.8rem;color:var(--w);opacity:.82;line-height:1.6;margin-top:.2rem; }
+    .hist-flag { display:flex;gap:2px;margin:.3rem 0 .8rem;width:50px; }
+    .hist-flag span { flex:1;height:5px; }
+    .france-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1.2rem 0 2rem; }
+    .france-card { background:var(--md);border:1px solid var(--nb);border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s; }
+    .france-card:hover { border-color:var(--b); }
+    .france-card .fc-ico { font-size:1.6rem;margin-bottom:.4rem; }
+    .france-card h3 { font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);margin-bottom:.3rem; }
+    .france-card p { font-size:.75rem;color:var(--gr);line-height:1.55; }
+
+    /* ========== ADMIN PAGE ========== */
+    #admin-page .adm-header { background:linear-gradient(135deg,#06214e,#0c1428);border-bottom:1px solid var(--nb);padding:1.8rem 4vw 1.2rem;margin-top:54px; }
+    .adm-title { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;color:var(--g); }
+    .adm-sub { font-size:.75rem;color:var(--gr);font-family:'Oswald',sans-serif;letter-spacing:1.5px;text-transform:uppercase;margin-top:.2rem; }
+    .adm-stats { display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;padding:1.6rem 4vw;max-width:900px;margin:0 auto; }
+    .adm-stat { background:var(--md);border:1px solid var(--nb);border-radius:10px;padding:1.2rem 1rem;text-align:center; }
+    .adm-stat .asn { font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--g); }
+    .adm-stat .asl { font-size:.6rem;color:var(--gr);letter-spacing:2px;text-transform:uppercase;font-family:'Oswald',sans-serif; }
+    .adm-table-wrap { padding:0 4vw 2rem;max-width:900px;margin:0 auto; }
+    .adm-section-title { font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gr);margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:1px solid var(--nb); }
+    .adm-table { width:100%;border-collapse:collapse; }
+    .adm-table th { font-family:'Oswald',sans-serif;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gr);padding:.5rem .6rem;text-align:left;border-bottom:1px solid var(--nb); }
+    .adm-table td { font-size:.74rem;padding:.55rem .6rem;border-bottom:1px solid rgba(100,140,220,.07);color:var(--w); }
+    .adm-table tr:hover td { background:rgba(240,192,64,.04); }
+    .adm-badge { display:inline-block;padding:2px 8px;border-radius:100px;font-size:.55rem;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase; }
+    .adm-badge.pend { background:rgba(240,192,64,.15);color:var(--g); }
+    .adm-badge.conf { background:rgba(80,200,100,.15);color:#70d880; }
+    .adm-empty { text-align:center;padding:2.5rem;color:var(--gr);font-size:.8rem; }
+    .adm-refresh { background:none;border:1px solid var(--nb);border-radius:6px;color:var(--gr);font-family:'Oswald',sans-serif;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;padding:.35rem .9rem;cursor:pointer;transition:border-color .2s,color .2s; }
+    .adm-refresh:hover { border-color:var(--g);color:var(--g); }
+    .adm-bar { display:flex;justify-content:space-between;align-items:center;padding:.6rem 4vw;max-width:900px;margin:0 auto; }
+
   </style>
 </head>
 
@@ -1699,7 +1762,9 @@
       <li><a onclick="go('home')" id="n-home">Accueil</a></li>
       <li><a onclick="go('ligue1')" id="n-ligue1">Ligue 1</a></li>
       <li><a onclick="go('europe')" id="n-europe">Europe</a></li>
+      <li><a onclick="go('histoire')" id="n-histoire">Histoire</a></li>
       <li><a onclick="go('booking')" id="n-booking">Réserver</a></li>
+      <li><a onclick="go('admin')" id="n-admin" style="color:var(--g)">Admin</a></li>
     </ul>
     <div class="nu" id="nua">
       <div class="nav-av" id="nav-av">I</div>
@@ -1834,11 +1899,12 @@
             <div class="csov"></div>
             <div class="cslb">📍 Paris</div>
           </div>
-          <div class="cdet">
+          <div class="cdet" onclick="openClubHistory('paris-saint-germain')">
             <div class="cbig">🔴</div>
             <div>
               <div class="cnm">Paris Saint-Germain</div>
               <div class="cst2">Parc des Princes</div>
+              <div class="cdet-hint">📖 Voir l'histoire</div>
             </div>
           </div>
           <div class="cfg">
@@ -1895,11 +1961,12 @@
             <div class="csov"></div>
             <div class="cslb">📍 Marseille</div>
           </div>
-          <div class="cdet">
+          <div class="cdet" onclick="openClubHistory('olympique-de-marseille')">
             <div class="cbig">🔵</div>
             <div>
               <div class="cnm">Olympique de Marseille</div>
               <div class="cst2">Orange Velodrome</div>
+              <div class="cdet-hint">📖 Voir l'histoire</div>
             </div>
           </div>
           <div class="cfg">
@@ -1956,11 +2023,12 @@
             <div class="csov"></div>
             <div class="cslb">📍 Lyon</div>
           </div>
-          <div class="cdet">
+          <div class="cdet" onclick="openClubHistory('olympique-lyonnais')">
             <div class="cbig">⚪</div>
             <div>
               <div class="cnm">Olympique Lyonnais</div>
               <div class="cst2">Groupama Stadium</div>
+              <div class="cdet-hint">📖 Voir l'histoire</div>
             </div>
           </div>
           <div class="cfg">
@@ -2017,11 +2085,12 @@
             <div class="csov"></div>
             <div class="cslb">📍 Monaco</div>
           </div>
-          <div class="cdet">
+          <div class="cdet" onclick="openClubHistory('as-monaco')">
             <div class="cbig">🔴</div>
             <div>
               <div class="cnm">AS Monaco</div>
               <div class="cst2">Stade Louis II</div>
+              <div class="cdet-hint">📖 Voir l'histoire</div>
             </div>
           </div>
           <div class="cfg">
@@ -2078,11 +2147,12 @@
             <div class="csov"></div>
             <div class="cslb">📍 Lille</div>
           </div>
-          <div class="cdet">
+          <div class="cdet" onclick="openClubHistory('losc-lille')">
             <div class="cbig">🔵</div>
             <div>
               <div class="cnm">LOSC Lille</div>
               <div class="cst2">Stade Pierre-Mauroy</div>
+              <div class="cdet-hint">📖 Voir l'histoire</div>
             </div>
           </div>
           <div class="cfg">
@@ -3767,6 +3837,115 @@
       <p>© 2025 ProKick Network 🇫🇷</p>
     </footer>
   </div>
+  <!-- CLUB HISTORY MODAL -->
+  <div class="club-modal-bg" id="clubModal">
+    <div class="club-modal">
+      <div class="cmclose" onclick="closeClubModal()">✕</div>
+      <div class="cmbadge" id="cm-badge" style="background:rgba(0,35,149,.25);border:1px solid rgba(0,35,149,.5);color:#6ab0ff;">🇫🇷 Ligue 1</div>
+      <div class="cmtitle" id="cm-title">Club</div>
+      <div class="cmsubt" id="cm-subt">Fondé • Ville</div>
+      <div class="cmstat" id="cm-stats"></div>
+      <div class="cmhist" id="cm-hist"></div>
+    </div>
+  </div>
+
+  <!-- HISTOIRE PAGE -->
+  <div id="histoire-page" class="page">
+    <div class="hph" style="padding-top:54px;">
+      <div class="hex"></div>
+      <div style="position:relative;z-index:2">
+        <div class="hist-flag"><span class="tcb"></span><span class="tcw"></span><span class="tcr"></span></div>
+        <div class="hist-hero-title">Histoire du<br><span>Football</span></div>
+      </div>
+    </div>
+    <div class="hist-section rv">
+      <h2>Les Origines du Football</h2>
+      <p>Le football moderne est né en Angleterre en 1863, lorsque la Football Association fut fondée à Londres. Mais ses racines plongent bien plus profondément dans l'histoire : des jeux de balle similaires existaient en Chine dès le IIe siècle avant J.-C. sous le nom de <em>cuju</em>, tandis que les Grecs et les Romains pratiquaient leurs propres variantes.</p>
+      <p>Ce n'est qu'à partir du XIXe siècle, dans les écoles et universités britanniques, que les règles furent codifiées et que le sport prit la forme qu'on lui connaît aujourd'hui.</p>
+    </div>
+    <div class="hist-section rv">
+      <h2>Le Football en France 🇫🇷</h2>
+      <p>La France occupe une place particulière dans l'histoire du football mondial. Le pays a joué un rôle fondateur dans la création des grandes institutions du sport : <strong style="color:var(--g)">Jules Rimet</strong>, président de la FIFA de 1921 à 1954, est le père de la Coupe du Monde. C'est lui qui lança le premier tournoi en <strong style="color:var(--g)">Uruguay en 1930</strong>.</p>
+      <p>L'UEFA, l'organe directeur du football européen, fut fondée en 1954 à Bâle sous impulsion française. La Coupe d'Europe des clubs champions — ancêtre de la Ligue des Champions — fut imaginée par le journaliste français Gabriel Hanot du journal L'Équipe en 1955.</p>
+    </div>
+    <div class="hist-section rv">
+      <h2>Chronologie Clé</h2>
+      <div class="hist-timeline">
+        <div class="hist-event"><div class="hist-year">1863</div><div class="hist-desc">Fondation de la Football Association en Angleterre — codification des règles modernes.</div></div>
+        <div class="hist-event"><div class="hist-year">1882</div><div class="hist-desc">Fondation du premier club de football français : le <strong>Le Havre Athletic Club</strong>, créé par des marins britanniques.</div></div>
+        <div class="hist-event"><div class="hist-year">1904</div><div class="hist-desc">Fondation de la <strong>FIFA</strong> à Paris, avec la France parmi les membres fondateurs. Robert Guérin (français) devient le premier président.</div></div>
+        <div class="hist-event"><div class="hist-year">1919</div><div class="hist-desc">Création de la <strong>Fédération Française de Football (FFF)</strong>.</div></div>
+        <div class="hist-event"><div class="hist-year">1930</div><div class="hist-desc">Première Coupe du Monde en Uruguay, organisée par Jules Rimet. La France participe dès le premier tournoi.</div></div>
+        <div class="hist-event"><div class="hist-year">1932</div><div class="hist-desc">Lancement du <strong>Championnat de France professionnel</strong> — ancêtre de la Ligue 1.</div></div>
+        <div class="hist-event"><div class="hist-year">1958</div><div class="hist-desc"><strong>Just Fontaine</strong> marque 13 buts en une seule Coupe du Monde en Suède — un record absolu toujours inégalé.</div></div>
+        <div class="hist-event"><div class="hist-year">1984</div><div class="hist-desc">La France remporte son premier grand titre : le <strong>Championnat d'Europe</strong> à domicile avec Platini, Giresse et Tigana. Michel Platini marque 9 buts en 5 matches.</div></div>
+        <div class="hist-event"><div class="hist-year">1998</div><div class="hist-desc">🏆 <strong>Championnat du Monde à domicile</strong>. La France de Zidane, Thuram, Desailly et Deschamps bat le Brésil 3-0 en finale au Stade de France. Zinédine Zidane inscrit deux buts de la tête.</div></div>
+        <div class="hist-event"><div class="hist-year">2000</div><div class="hist-desc">Doublé historique : les Bleus remportent l'<strong>Euro 2000</strong> en Belgique/Pays-Bas avec le but en or de David Trezeguet en finale contre l'Italie.</div></div>
+        <div class="hist-event"><div class="hist-year">2018</div><div class="hist-desc">🏆 Deuxième titre mondial en Russie. La <strong>génération dorée</strong> emmenée par Mbappé, Griezmann et Pogba bat la Croatie 4-2 en finale.</div></div>
+      </div>
+    </div>
+    <div class="hist-section rv">
+      <h2>Légendes Françaises</h2>
+      <div class="france-grid">
+        <div class="france-card"><div class="fc-ico">⭐</div><h3>Zinédine Zidane</h3><p>Considéré comme l'un des meilleurs joueurs de tous les temps. Ballon d'Or 1998, triple champion d'Europe avec le Real Madrid comme entraîneur.</p></div>
+        <div class="france-card"><div class="fc-ico">🥇</div><h3>Michel Platini</h3><p>Triple Ballon d'Or (1983-85). Capitaine de la France lors de la victoire à l'Euro 1984. 41 buts en 72 sélections.</p></div>
+        <div class="france-card"><div class="fc-ico">⚡</div><h3>Kylian Mbappé</h3><p>Champion du monde à 19 ans en 2018. Meilleur buteur de l'équipe de France de l'histoire avec plus de 50 buts. Ambassadeur du football moderne.</p></div>
+        <div class="france-card"><div class="fc-ico">🦁</div><h3>Thierry Henry</h3><p>Meilleur buteur de l'histoire d'Arsenal. Champion du monde 1998, champion d'Europe 2000. 51 buts en équipe de France.</p></div>
+        <div class="france-card"><div class="fc-ico">🧤</div><h3>Lilian Thuram</h3><p>Record de sélections en équipe de France (142). Ses deux buts contre la Croatie en demi-finale du Mondial 1998 restent légendaires.</p></div>
+        <div class="france-card"><div class="fc-ico">📐</div><h3>Just Fontaine</h3><p>Détenteur du record absolu de buts en une seule Coupe du Monde : 13 buts en 6 matches lors du Mondial 1958 en Suède.</p></div>
+      </div>
+    </div>
+    <div class="hist-section rv">
+      <h2>La Ligue 1 — Fleuron du Football Français</h2>
+      <p>Fondée en 1932 sous le nom de <strong>Division 1</strong>, rebaptisée <strong>Ligue 1</strong> en 2002, la première division française est l'une des cinq grandes ligues européennes. Elle a produit des joueurs mondiaux comme Zidane, Mbappé, Henry, Cantona et bien d'autres.</p>
+      <p>Le <strong>Paris Saint-Germain</strong> domine le championnat depuis les années 2010 grâce aux investissements qataris. Mais l'histoire de la Ligue 1 est riche : l'Olympique de Marseille reste le seul club français à avoir remporté la <strong>Ligue des Champions</strong> (1993), et l'AS Monaco a produit certaines des plus belles équipes du football européen.</p>
+    </div>
+    <footer>
+      <div class="fl"><span class="l1p" style="font-size:.72rem;padding:2px 5px;">L1</span>PRO<span>KICK</span></div>
+      <p>© 2025 ProKick Network 🇫🇷</p>
+    </footer>
+  </div>
+
+  <!-- ADMIN PAGE -->
+  <div id="admin-page" class="page">
+    <div class="adm-header">
+      <div class="adm-title">Tableau de Bord Admin</div>
+      <div class="adm-sub">Gestion des réservations · ProKick Network</div>
+    </div>
+    <div class="adm-stats" id="adm-stats">
+      <div class="adm-stat"><div class="asn" id="adm-total">0</div><div class="asl">Réservations</div></div>
+      <div class="adm-stat"><div class="asn" id="adm-pending">0</div><div class="asl">En Attente</div></div>
+      <div class="adm-stat"><div class="asn" id="adm-players">0</div><div class="asl">Joueurs Demandés</div></div>
+      <div class="adm-stat"><div class="asn" id="adm-today">0</div><div class="asl">Aujourd'hui</div></div>
+    </div>
+    <div class="adm-table-wrap">
+      <div class="adm-bar">
+        <div class="adm-section-title">Réservations Récentes</div>
+        <button class="adm-refresh" onclick="loadAdminBookings()">↻ Actualiser</button>
+      </div>
+      <table class="adm-table">
+        <thead>
+          <tr>
+            <th>Référence</th>
+            <th>Joueur</th>
+            <th>Contact</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Valeur</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody id="adm-tbody">
+          <tr><td colspan="7" class="adm-empty">Chargement des réservations...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <footer>
+      <div class="fl"><span class="l1p" style="font-size:.72rem;padding:2px 5px;">L1</span>PRO<span>KICK</span></div>
+      <p>© 2025 ProKick Network 🇫🇷</p>
+    </footer>
+  </div>
+
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     var sn = '', sv = '', sw = '', sc = '', sk = '';
     var PI = { 'mbappe': null, 'neymar': null, 'haaland': null, 'debruyne': null, 'david': null, 'ronaldo': null, 'yamal': null, 'lewandowski': null, 'martinez': null, 'jesus': null, 'odegaard': null, 'saka': null, 'taa': null, 'nunez': null, 'salah': null, 'sane': null, 'musiala': null, 'kane': null, 'pedri': null, 'foden': null, 'rodrygo': null, 'vinicius': null, 'bellingham': null, 'brandt': null, 'fullkrug': null, 'adeyemi': null, 'hernandez': null, 'barella': null, 'thuram': null, 'leao': null, 'giroud': null, 'hakimi': null, 'dembele': null };
@@ -3885,6 +4064,132 @@
     function initRv() { document.querySelectorAll('.rv').forEach(function (el) { el.classList.remove('on'); io.observe(el); }); }
     initRv();
     document.getElementById('modal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+
+    // =============================================
+    // CLUB HISTORY DATA & MODAL
+    // =============================================
+    var clubHistory = {
+      'paris-saint-germain': {
+        name: 'Paris Saint-Germain',
+        badge: '🔴 PSG',
+        badgeColor: 'background:rgba(0,35,149,.25);border:1px solid rgba(0,35,149,.5);color:#6ab0ff;',
+        subt: 'Fondé en 1970 · Paris, France',
+        stats: [
+          {n:'12', l:'Titres L1'}, {n:'14', l:'Coupes de France'}, {n:'11', l:'Coupes Ligue'}, {n:'1', l:'C1 (2020 F.)'}
+        ],
+        hist: `<p>Le Paris Saint-Germain fut fondé en 1970 par la fusion du Paris FC et du Stade Saint-Germain. Après des débuts modestes, le club connut une ascension fulgurante grâce au rachat par des investisseurs américains, puis en 2011 par le fonds souverain qatari Qatar Sports Investments (QSI).</p><p>Sous la direction sportive de Leonardo et les entraîneurs Carlo Ancelotti, Laurent Blanc puis Thomas Tuchel, le PSG s'imposa comme la force dominante du football français, remportant 9 des 12 dernières éditions de la Ligue 1.</p><p>En 2022, le club réalisa le coup de théâtre du siècle en signant <strong>Kylian Mbappé, Neymar Jr et Lionel Messi</strong> simultanément. Le Parc des Princes, inauguré en 1897 et rénové pour les Jeux Olympiques de Paris 1924 et 1998, reste le sanctuaire du club avec une capacité de 47 929 spectateurs.</p><p>Le PSG a atteint la finale de la Ligue des Champions en 2020, battant l'Atalanta et Leipzig en quarts et demis, avant de s'incliner face au Bayern Munich (0-1) grâce à un but de Kingsley Coman.</p>`
+      },
+      'olympique-de-marseille': {
+        name: 'Olympique de Marseille',
+        badge: '🔵 OM',
+        badgeColor: 'background:rgba(0,91,187,.2);border:1px solid rgba(0,91,187,.5);color:#5bbfff;',
+        subt: 'Fondé en 1899 · Marseille, France',
+        stats: [
+          {n:'9', l:'Titres L1'}, {n:'10', l:'Coupes de France'}, {n:'1', l:'Ligue Champions'}, {n:'1', l:'Coupe UEFA'}
+        ],
+        hist: `<p>L'Olympique de Marseille est le club de football le plus titré et le plus populaire de France. Fondé en 1899, il incarne l'âme et la passion du Midi. Le Vélodrome, avec ses 67 394 places, est régulièrement l'un des stades les plus chauds d'Europe.</p><p>Sous la présidence de Bernard Tapie et le règne de l'entraîneur Raymond Goethals, l'OM connut son âge d'or dans les années 1990 : cinq titres de champion de France consécutifs (1989-1993) et surtout la <strong>Ligue des Champions 1993</strong>, unique titre européen d'un club français, remportée face à l'AC Milan (1-0) avec un but de Basile Boli.</p><p>Cette victoire fut cependant entachée par le scandale VA-OM, dans lequel le club fut accusé d'avoir acheté un match de Division 1 contre Valenciennes. L'OM fut rétrogradé en D2 et exclu de la Ligue des Champions 1993-94.</p><p>Des joueurs légendaires comme Didier Deschamps, Rudi Völler, Chris Waddle, Samir Nasri et plus récemment Dimitri Payet ont marqué l'histoire phocéenne. Le club reste le seul représentant français dans le top des clubs européens les plus titrés.</p>`
+      },
+      'olympique-lyonnais': {
+        name: 'Olympique Lyonnais',
+        badge: '⚪ OL',
+        badgeColor: 'background:rgba(150,150,150,.15);border:1px solid rgba(200,200,200,.3);color:#ccc;',
+        subt: 'Fondé en 1950 · Lyon, France',
+        stats: [
+          {n:'7', l:'Titres L1'}, {n:'5', l:'Coupes de France'}, {n:'8', l:'CL Quart'}, {n:'1', l:'C. UEFA (F.)'}
+        ],
+        hist: `<p>L'Olympique Lyonnais, fondé en 1950, est l'un des clubs les plus remarquables de l'histoire du football français. Sous la présidence de Jean-Michel Aulas depuis 1987, Lyon accomplit l'exploit inédit de remporter <strong>sept championnats de France consécutifs</strong> entre 2002 et 2008.</p><p>Cette période dorée fut portée par des joueurs d'exception : Michael Essien, Mahamadou Diarra, Sidney Govou, Karim Benzema, Loïc Rémy et l'international français Juninho Pernambucano, maître des coups francs.</p><p>En Ligue des Champions, Lyon fit trembler les plus grands clubs européens, atteignant les demi-finales en 2010, éliminant notamment le Real Madrid et le Manchester United. En 2020, en pleine pandémie, ils atteignirent à nouveau les demi-finales dans la bulle de Lisbonne, éliminant Manchester City avant de s'incliner face au Bayern Munich.</p><p>Le nouveau stade Groupama Stadium, inauguré en 2016 avec une capacité de 59 186 places, est l'un des plus modernes d'Europe, construit sans subvention publique — un modèle économique unique en France.</p>`
+      },
+      'as-monaco': {
+        name: 'AS Monaco',
+        badge: '🔴 ASM',
+        badgeColor: 'background:rgba(220,50,50,.15);border:1px solid rgba(220,50,50,.4);color:#ff8080;',
+        subt: 'Fondé en 1924 · Monaco, Principauté',
+        stats: [
+          {n:'8', l:'Titres L1'}, {n:'5', l:'Coupes de France'}, {n:'1', l:'CL Finale'}, {n:'1', l:'C. UEFA'}
+        ],
+        hist: `<p>L'AS Monaco, club de la Principauté de Monaco, joue en Ligue 1 française malgré son statut de club d'un État indépendant. Cette particularité géographique lui confère une identité unique dans le paysage du football européen.</p><p>Fondé en 1924, Monaco connut ses grandes heures dans les années 1980 et 1990, notamment avec Arsène Wenger comme entraîneur de 1987 à 1994. Le titre de champion de France 1988 et la finale de la Coupe UEFA 1992 perdue contre Werder Brême marquèrent cette époque.</p><p>En 2004, sous Didier Deschamps, Monaco réalisa l'exploit d'atteindre la finale de la Ligue des Champions, éliminant le Real Madrid et le Chelsea de Roman Abramovitch avant de s'incliner face au FC Porto de José Mourinho (0-3).</p><p>La résurgence la plus spectaculaire reste sans conteste la saison 2016-17 : emmenés par Leonardo Jardim, avec Kylian Mbappé (18 ans), Bernardo Silva, Thomas Lemar et Radamel Falcao, Monaco remporta le championnat et atteignit les demi-finales de la Ligue des Champions, éliminant Manchester City et le Borussia Dortmund. Ce titre reste le dernier d'un club non-PSG en Ligue 1.</p>`
+      },
+      'losc-lille': {
+        name: 'LOSC Lille',
+        badge: '🔵 LOSC',
+        badgeColor: 'background:rgba(0,60,150,.2);border:1px solid rgba(0,100,200,.4);color:#60a8ff;',
+        subt: 'Fondé en 1944 · Lille, France',
+        stats: [
+          {n:'4', l:'Titres L1'}, {n:'6', l:'Coupes de France'}, {n:'1', l:'CL 8e finale'}, {n:'1', l:'Doublé 2011'}
+        ],
+        hist: `<p>Le LOSC Lille Métropole est l'un des clubs les plus historiques du football français, fondé en 1944. Situé dans la métropole lilloise, au carrefour de la France, de la Belgique et des influences britanniques, Lille a toujours été un foyer de talent footballistique.</p><p>Le club connut son premier âge d'or dans les années 1950, avec deux titres de champion de France (1954, 1946) et deux Coupes de France. Après des décennies de disette, Lille revint au premier plan grâce au travail de Vahid Halilhodžić et notamment Claude Puel.</p><p>Sous la houlette de Rudi Garcia, Lille réalisa l'exploit de remporter le <strong>Doublé Championnat-Coupe de France en 2011</strong>, avec une équipe emmenée par Eden Hazard, Moussa Sow et Gervinho. Un titre historique qui valut à Rudi Garcia le titre d'entraîneur de l'année en UEFA.</p><p>Le dernier exploit en date reste la saison 2020-21 : sous la direction de Christophe Galtier et avec Jonathan David, Burak Yilmaz et Renato Sanches, Lille remporta son 4e titre de champion de France, créant la surprise face au PSG. Une victoire saluée dans tout le monde footballistique comme l'un des plus beaux titres de l'ère moderne.</p>`
+      }
+    };
+
+    function openClubHistory(key) {
+      var c = clubHistory[key];
+      if (!c) return;
+      document.getElementById('cm-badge').innerHTML = c.badge;
+      document.getElementById('cm-badge').style.cssText = c.badgeColor;
+      document.getElementById('cm-title').textContent = c.name;
+      document.getElementById('cm-subt').textContent = c.subt;
+      var statsHtml = c.stats.map(function(s){ return '<div class="cmst"><span>'+s.n+'</span><small>'+s.l+'</small></div>'; }).join('');
+      document.getElementById('cm-stats').innerHTML = statsHtml;
+      document.getElementById('cm-hist').innerHTML = c.hist;
+      document.getElementById('clubModal').classList.add('on');
+      document.body.style.overflow='hidden';
+    }
+    function closeClubModal() {
+      document.getElementById('clubModal').classList.remove('on');
+      document.body.style.overflow='';
+    }
+    document.getElementById('clubModal').addEventListener('click', function(e){ if(e.target===this) closeClubModal(); });
+
+    // =============================================
+    // ADMIN DASHBOARD
+    // =============================================
+    var localBookings = JSON.parse(localStorage.getItem('prokick_bookings') || '[]');
+
+    function saveBookingLocally(data) {
+      localBookings.push(data);
+      localStorage.setItem('prokick_bookings', JSON.stringify(localBookings));
+    }
+
+    function loadAdminBookings() {
+      var tbody = document.getElementById('adm-tbody');
+      var allBookings = [];
+      try { allBookings = JSON.parse(localStorage.getItem('prokick_bookings') || '[]'); } catch(e){}
+
+      document.getElementById('adm-total').textContent = allBookings.length;
+      document.getElementById('adm-pending').textContent = allBookings.filter(function(b){ return b.status==='pending'; }).length || allBookings.length;
+      var players = {};
+      allBookings.forEach(function(b){ if(b.player) players[b.player]=1; });
+      document.getElementById('adm-players').textContent = Object.keys(players).length;
+      var today = new Date().toDateString();
+      document.getElementById('adm-today').textContent = allBookings.filter(function(b){ return b.createdAt && new Date(b.createdAt).toDateString()===today; }).length;
+
+      if (!allBookings.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="adm-empty">Aucune réservation pour l\'instant. Les réservations confirmées apparaîtront ici.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = allBookings.slice().reverse().map(function(b){
+        return '<tr><td><code style="color:var(--g);font-size:.7rem;">'+( b.reference||'—')+'</code></td><td>'+( b.player||'—')+'</td><td><span style="color:var(--gr)">'+( b.bookerName||'—')+'</span><br><small style="color:var(--gr);font-size:.65rem;">'+(b.bookerEmail||'')+'</small></td><td>'+(b.date||'—')+'</td><td>'+(b.type||'—')+'</td><td style="color:var(--g)">€'+(b.value||'—')+'</td><td><span class="adm-badge pend">En Attente</span></td></tr>';
+      }).join('');
+    }
+
+    // Override submitForm to also save locally for admin
+    var _origSubmitFormWithFirebase = typeof submitFormWithFirebase === 'function' ? submitFormWithFirebase : null;
+    function patchSubmitForAdmin() {
+      var origSF = submitForm;
+      submitForm = function() {
+        var n = document.getElementById('fn').value.trim();
+        var e = document.getElementById('fe').value.trim();
+        var d = document.getElementById('fd').value;
+        var t = document.getElementById('ft').value;
+        if (sn && n && e && d && t) {
+          var ref = 'PKN-' + Math.floor(100000 + Math.random() * 900000);
+          saveBookingLocally({ reference: ref, player: sn, value: sv, wage: sw, club: sc, bookerName: n, bookerEmail: e, date: d, type: t, status: 'pending', createdAt: new Date().toISOString() });
+        }
+        origSF.call(this);
+      };
+    }
+    setTimeout(patchSubmitForAdmin, 500);
+
   </script>
   <!-- Firebase SDK (compat v9) -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
