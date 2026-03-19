@@ -99,7 +99,7 @@ function sendOTPEmail(toEmail, toName, otpCode) {
 function sendBookingEmail(toEmail, toName, params) {
     return _emailjsReady.then(function () {
         return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_BOOKING,
-            Object.assign({ to_email: toEmail, to_name: toName }, params));
+            Object.assign({ email: toEmail, to_email: toEmail, to_name: toName }, params));
     });
 }
 
