@@ -27,7 +27,7 @@ var EMAILJS_PUBLIC_KEY = '1hxZfKRHt7tZwFtkh';
 var EMAILJS_SERVICE_ID = 'service_3p9oeko';
 var EMAILJS_TEMPLATE_OTP = 'template_tr4s459';
 var EMAILJS_TEMPLATE_BOOKING = 'template_w89xai9';
-var ABSTRACT_API_KEY = '64c2b1ce141b4b9b8c049b566cbfea78'; // optional — leave '' to skip email check
+var ABSTRACT_API_KEY = ''; // optional — leave '' to skip email check
 // ──────────────────────────────────────────────────────────────────────────
 
 // ── Firebase ───────────────────────────────────────────────────────────────
