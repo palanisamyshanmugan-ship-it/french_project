@@ -27,7 +27,7 @@ var EMAILJS_PUBLIC_KEY = '1hxZfKRHt7tZwFtkh';
 var EMAILJS_SERVICE_ID = 'service_3p9oeko';
 var EMAILJS_TEMPLATE_OTP = 'template_tr4s459';
 var EMAILJS_TEMPLATE_BOOKING = 'template_w89xai9';
-var ABSTRACT_API_KEY = ''; // optional — leave '' to skip email check
+var ABSTRACT_API_KEY = '64c2b1ce141b4b9b8c049b566cbfea78'; // optional — leave '' to skip email check
 // ──────────────────────────────────────────────────────────────────────────
 
 // ── Firebase ───────────────────────────────────────────────────────────────
@@ -43,17 +43,26 @@ firebase.initializeApp(firebaseConfig);
 var auth = firebase.auth();
 var db = firebase.firestore();
 
-// ── EmailJS init ───────────────────────────────────────────────────────────
-(function () {
-    if (typeof emailjs !== 'undefined') {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-    } else {
-        var s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-        s.onload = function () { emailjs.init(EMAILJS_PUBLIC_KEY); };
-        document.head.appendChild(s);
+// ── EmailJS init — promise-gated so sends never fire before SDK is ready ──
+var _emailjsReady = new Promise(function(resolve) {
+    function tryInit() {
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+            resolve();
+        } else {
+            var s = document.createElement('script');
+            s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+            s.onload = function() { emailjs.init(EMAILJS_PUBLIC_KEY); resolve(); };
+            s.onerror = function() { resolve(); };
+            document.head.appendChild(s);
+        }
     }
-})();
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tryInit);
+    } else {
+        tryInit();
+    }
+});
 
 // ── OTP store ─────────────────────────────────────────────────────────────
 var _otpStore = {};
@@ -73,17 +82,21 @@ function validateOTP(email, code) {
     return true;
 }
 
-// ── EmailJS senders ────────────────────────────────────────────────────────
+// ── EmailJS senders — always wait for SDK to be ready first ───────────────
 function sendOTPEmail(toEmail, toName, otpCode) {
-    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OTP, {
-        to_email: toEmail,
-        to_name: toName,
-        otp_code: otpCode
+    return _emailjsReady.then(function() {
+        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OTP, {
+            to_email: toEmail,
+            to_name:  toName,
+            otp_code: otpCode
+        });
     });
 }
 function sendBookingEmail(toEmail, toName, params) {
-    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_BOOKING,
-        Object.assign({ to_email: toEmail, to_name: toName }, params));
+    return _emailjsReady.then(function() {
+        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_BOOKING,
+            Object.assign({ to_email: toEmail, to_name: toName }, params));
+    });
 }
 
 // ── Email existence check (Abstract API) ──────────────────────────────────
@@ -297,29 +310,14 @@ function doSignup() {
                 openOTPOverlay(e);
                 btn.textContent = 'Créer un Compte →'; btn.disabled = false;
             })
-            .catch(function () {
-                // EmailJS not yet configured — dev fallback, skip OTP
-                if (EMAILJS_PUBLIC_KEY === 'YOUR_EMAILJS_PUBLIC_KEY') {
-                    _pendingSignup = null;
-                    auth.createUserWithEmailAndPassword(e, p)
-                        .then(function (uc) {
-                            return db.collection('users').doc(uc.user.uid).set({
-                                name: n, email: e, emailVerified: false,
-                                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                            }).then(function () { enterApp(n.split(' ')[0], e); });
-                        })
-                        .catch(function (er) {
-                            err.textContent = er.code === 'auth/email-already-in-use'
-                                ? 'Cet email est déjà utilisé.' : 'Erreur : ' + er.message;
-                            err.style.display = 'block';
-                            btn.textContent = 'Créer un Compte →'; btn.disabled = false;
-                        });
-                } else {
-                    _pendingSignup = null;
-                    err.textContent = 'Impossible d\'envoyer le code. Réessayez.';
-                    err.style.display = 'block';
-                    btn.textContent = 'Créer un Compte →'; btn.disabled = false;
-                }
+            .catch(function (emailErr) {
+                _pendingSignup = null;
+                console.error('EmailJS error:', emailErr);
+                // Show the actual EmailJS error code if available to help debugging
+                var detail = (emailErr && emailErr.text) ? ' (' + emailErr.text + ')' : '';
+                err.textContent = 'Impossible d\'envoyer le code email. Vérifiez votre configuration EmailJS.' + detail;
+                err.style.display = 'block';
+                btn.textContent = 'Créer un Compte →'; btn.disabled = false;
             });
     });
 }
