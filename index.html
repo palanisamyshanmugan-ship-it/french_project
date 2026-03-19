@@ -4949,24 +4949,7 @@
       document.getElementById('lf').classList.toggle('on', t === 'login');
       document.getElementById('sf').classList.toggle('on', t === 'signup');
     }
-    function doLogin() {
-      var e = document.getElementById('le').value.trim(), p = document.getElementById('lp').value;
-      var err = document.getElementById('lerr');
-      if (!e || !p) { err.style.display = 'block'; err.textContent = 'Veuillez remplir tous les champs.'; return; }
-      err.style.display = 'none';
-      var saved = localStorage.getItem('prokick_user_' + e);
-      var nm = saved || e.split('@')[0];
-      enterApp(nm.charAt(0).toUpperCase() + nm.slice(1));
-    }
-    function doSignup() {
-      var n = document.getElementById('sn').value.trim(), e = document.getElementById('se').value.trim(), p = document.getElementById('sp').value;
-      var err = document.getElementById('serr');
-      if (!n || !e || !p) { err.style.display = 'block'; err.textContent = 'Veuillez remplir tous les champs.'; return; }
-      if (p.length < 6) { err.style.display = 'block'; err.textContent = 'Le mot de passe doit contenir au moins 6 caractères.'; return; }
-      err.style.display = 'none';
-      localStorage.setItem('prokick_user_' + e, n.split(' ')[0]);
-      enterApp(n.split(' ')[0], e);
-    }
+    /* doLogin and doSignup are handled by firebase-app.js */
     function guestIn() { enterApp('Invité'); }
     function enterApp(name, email) {
       document.getElementById('auth-page').classList.remove('active');
