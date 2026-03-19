@@ -44,7 +44,7 @@ var auth = firebase.auth();
 var db = firebase.firestore();
 
 // ── EmailJS init — promise-gated so sends never fire before SDK is ready ──
-var _emailjsReady = new Promise(function(resolve) {
+var _emailjsReady = new Promise(function (resolve) {
     function tryInit() {
         if (typeof emailjs !== 'undefined') {
             emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -52,8 +52,8 @@ var _emailjsReady = new Promise(function(resolve) {
         } else {
             var s = document.createElement('script');
             s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-            s.onload = function() { emailjs.init(EMAILJS_PUBLIC_KEY); resolve(); };
-            s.onerror = function() { resolve(); };
+            s.onload = function () { emailjs.init(EMAILJS_PUBLIC_KEY); resolve(); };
+            s.onerror = function () { resolve(); };
             document.head.appendChild(s);
         }
     }
@@ -84,16 +84,16 @@ function validateOTP(email, code) {
 
 // ── EmailJS senders — always wait for SDK to be ready first ───────────────
 function sendOTPEmail(toEmail, toName, otpCode) {
-    return _emailjsReady.then(function() {
+    return _emailjsReady.then(function () {
         return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OTP, {
             to_email: toEmail,
-            to_name:  toName,
+            to_name: toName,
             otp_code: otpCode
         });
     });
 }
 function sendBookingEmail(toEmail, toName, params) {
-    return _emailjsReady.then(function() {
+    return _emailjsReady.then(function () {
         return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_BOOKING,
             Object.assign({ to_email: toEmail, to_name: toName }, params));
     });
@@ -326,16 +326,76 @@ function doSignup() {
 // Forgot password
 // ========================================
 function showForgotPassword() {
-    var prefill = (document.getElementById('le') || {}).value || '';
-    var input = prompt('Entrez votre adresse email :', prefill);
-    if (!input || !input.trim()) return;
-    auth.sendPasswordResetEmail(input.trim())
-        .then(function () { alert('✅ Email de réinitialisation envoyé à ' + input.trim() + '.\nVérifiez votre boîte de réception.'); })
+    // Build or show the forgot password overlay
+    var existingOverlay = document.getElementById('fp-overlay');
+    if (existingOverlay) {
+        existingOverlay.style.display = 'flex';
+        var inp = document.getElementById('fp-email-input');
+        if (inp) inp.value = (document.getElementById('le') || {}).value || '';
+        inp && inp.focus();
+        return;
+    }
+    var overlay = document.createElement('div');
+    overlay.id = 'fp-overlay';
+    overlay.style.cssText =
+        'display:flex;position:fixed;inset:0;z-index:9999;' +
+        'background:rgba(4,8,15,.96);backdrop-filter:blur(14px);' +
+        'align-items:center;justify-content:center;';
+    overlay.innerHTML =
+        '<div style="background:rgba(7,13,28,.98);border:1px solid rgba(100,140,220,.25);' +
+        'border-radius:14px;padding:2rem;width:100%;max-width:340px;text-align:center;">' +
+        '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:1.5rem;' +
+        'letter-spacing:3px;color:#f0c040;margin-bottom:.5rem;">MOT DE PASSE OUBLIÉ</div>' +
+        '<p style="font-size:.82rem;color:#7a8faa;margin-bottom:1.2rem;line-height:1.6;">' +
+        'Entrez votre adresse email pour recevoir un lien de réinitialisation.</p>' +
+        '<input id="fp-email-input" type="email" placeholder="vous@exemple.com" ' +
+        'style="width:100%;box-sizing:border-box;margin-bottom:.8rem;padding:11px 13px;' +
+        'background:rgba(255,255,255,.06);border:1px solid rgba(100,140,220,.25);' +
+        'border-radius:6px;color:#f5f0e8;font-size:.9rem;outline:none;" />' +
+        '<div id="fp-err" style="color:#e63946;font-size:.78rem;margin-bottom:.6rem;display:none;"></div>' +
+        '<div id="fp-ok" style="color:#50c864;font-size:.78rem;margin-bottom:.6rem;display:none;"></div>' +
+        '<button onclick="sendForgotPasswordEmail()" style="width:100%;padding:13px;' +
+        'background:linear-gradient(135deg,#f0c040,#c8960a);color:#04080f;border:none;' +
+        'border-radius:6px;cursor:pointer;font-family:\'Oswald\',sans-serif;font-weight:700;' +
+        'font-size:.88rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:.6rem;">' +
+        'ENVOYER LE LIEN &#8594;</button>' +
+        '<button onclick="closeFPOverlay()" style="background:none;border:none;color:#7a8faa;' +
+        'font-size:.75rem;cursor:pointer;text-decoration:underline;">Annuler</button>' +
+        '</div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeFPOverlay(); });
+    var inp = document.getElementById('fp-email-input');
+    if (inp) { inp.value = (document.getElementById('le') || {}).value || ''; inp.focus(); }
+    inp && inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendForgotPasswordEmail(); });
+}
+
+function closeFPOverlay() {
+    var overlay = document.getElementById('fp-overlay');
+    if (overlay) overlay.style.display = 'none';
+    var errEl = document.getElementById('fp-err');
+    var okEl = document.getElementById('fp-ok');
+    if (errEl) errEl.style.display = 'none';
+    if (okEl) okEl.style.display = 'none';
+}
+
+function sendForgotPasswordEmail() {
+    var inp = document.getElementById('fp-email-input');
+    var errEl = document.getElementById('fp-err');
+    var okEl = document.getElementById('fp-ok');
+    var email = inp ? inp.value.trim() : '';
+    errEl.style.display = 'none'; okEl.style.display = 'none';
+    if (!email) { errEl.textContent = 'Veuillez saisir votre adresse email.'; errEl.style.display = 'block'; return; }
+    auth.sendPasswordResetEmail(email)
+        .then(function () {
+            okEl.textContent = 'Email envoyé ✓ Vérifiez votre boîte de réception.';
+            okEl.style.display = 'block';
+            setTimeout(closeFPOverlay, 3500);
+        })
         .catch(function (err) {
             var msg = err.code === 'auth/user-not-found' ? 'Aucun compte trouvé pour cet email.'
                 : err.code === 'auth/invalid-email' ? 'Adresse email invalide.'
-                    : err.message;
-            alert('❌ ' + msg);
+                : err.message;
+            errEl.textContent = msg; errEl.style.display = 'block';
         });
 }
 
