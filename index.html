@@ -176,7 +176,7 @@
 
     .nav-logout:hover {
       color: var(--r);
-      background: rgba(230,57,70,.12);
+      background: rgba(230, 57, 70, .12);
     }
 
     .nav-logout svg {
@@ -1659,68 +1659,450 @@
       opacity: 1;
       transform: translateY(0);
     }
+
     /* ========== CLUB HISTORY MODAL ========== */
-    .club-modal-bg { position:fixed;inset:0;background:rgba(4,8,15,.92);z-index:1100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s; }
-    .club-modal-bg.on { opacity:1;pointer-events:all; }
-    .club-modal { background:var(--md);border:1px solid var(--nb);border-radius:14px;width:90%;max-width:560px;max-height:80vh;overflow-y:auto;padding:2rem 1.6rem;position:relative;animation:fu .3s; }
-    .cmbadge { display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:100px;font-family:'Oswald',sans-serif;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:.8rem; }
-    .cmtitle { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:3px;color:var(--g);margin-bottom:.4rem; }
-    .cmsubt { font-size:.78rem;color:var(--gr);margin-bottom:1.2rem;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase; }
-    .cmclose { position:absolute;top:1rem;right:1rem;width:28px;height:28px;border-radius:50%;background:rgba(240,192,64,.1);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gr);font-size:.9rem;transition:background .2s,color .2s; }
-    .cmclose:hover { background:var(--r);color:#fff; }
-    .cmstat { display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem; }
-    .cmst { background:rgba(240,192,64,.08);border:1px solid var(--b);border-radius:6px;padding:.4rem .8rem;text-align:center; }
-    .cmst span { display:block;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--g); }
-    .cmst small { font-size:.55rem;color:var(--gr);letter-spacing:1px;text-transform:uppercase; }
-    .cmhist { font-size:.82rem;line-height:1.75;color:var(--w);opacity:.88; }
-    .cmhist p { margin-bottom:.8rem; }
-    .cmchev { position:absolute;bottom:.6rem;right:.8rem;opacity:.25;font-size:.65rem;font-family:'Oswald',sans-serif;letter-spacing:1px; }
-    .cdet { cursor:pointer;transition:background .2s; }
-    .cdet:hover .cnm { color:var(--g); }
-    .cdet-hint { font-size:.52rem;color:var(--g);opacity:.7;letter-spacing:1px;text-transform:uppercase;font-family:'Oswald',sans-serif;margin-top:2px; }
+    .club-modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 8, 15, .92);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+    }
+
+    .club-modal-bg.on {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .club-modal {
+      background: var(--md);
+      border: 1px solid var(--nb);
+      border-radius: 14px;
+      width: 90%;
+      max-width: 560px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 2rem 1.6rem;
+      position: relative;
+      animation: fu .3s;
+    }
+
+    .cmbadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-family: 'Oswald', sans-serif;
+      font-size: .6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+
+    .cmtitle {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--g);
+      margin-bottom: .4rem;
+    }
+
+    .cmsubt {
+      font-size: .78rem;
+      color: var(--gr);
+      margin-bottom: 1.2rem;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .cmclose {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(240, 192, 64, .1);
+      border: 1px solid var(--b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--gr);
+      font-size: .9rem;
+      transition: background .2s, color .2s;
+    }
+
+    .cmclose:hover {
+      background: var(--r);
+      color: #fff;
+    }
+
+    .cmstat {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.2rem;
+    }
+
+    .cmst {
+      background: rgba(240, 192, 64, .08);
+      border: 1px solid var(--b);
+      border-radius: 6px;
+      padding: .4rem .8rem;
+      text-align: center;
+    }
+
+    .cmst span {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: var(--g);
+    }
+
+    .cmst small {
+      font-size: .55rem;
+      color: var(--gr);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .cmhist {
+      font-size: .82rem;
+      line-height: 1.75;
+      color: var(--w);
+      opacity: .88;
+    }
+
+    .cmhist p {
+      margin-bottom: .8rem;
+    }
+
+    .cmchev {
+      position: absolute;
+      bottom: .6rem;
+      right: .8rem;
+      opacity: .25;
+      font-size: .65rem;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .cdet {
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .cdet:hover .cnm {
+      color: var(--g);
+    }
+
+    .cdet-hint {
+      font-size: .52rem;
+      color: var(--g);
+      opacity: .7;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+      margin-top: 2px;
+    }
 
     /* ========== HISTOIRE PAGE ========== */
-    #histoire-page .hph { min-height:220px;background:linear-gradient(135deg,#002395 0%,#06214e 60%,#8b0000 100%);display:flex;align-items:flex-end;padding:2rem 4vw 1.4rem;position:relative;overflow:hidden; }
-    .hist-hero-title { font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,8vw,4.5rem);letter-spacing:5px;line-height:.9;position:relative;z-index:2; }
-    .hist-hero-title span { color:var(--g); }
-    .hist-section { padding:2.4rem 4vw 1rem;max-width:820px;margin:0 auto; }
-    .hist-section h2 { font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;color:var(--g);margin-bottom:.5rem; }
-    .hist-section p { font-size:.84rem;line-height:1.78;color:var(--w);opacity:.88;margin-bottom:1rem; }
-    .hist-timeline { position:relative;padding-left:2.2rem;border-left:2px solid var(--b);margin:1.4rem 0 2rem; }
-    .hist-event { position:relative;margin-bottom:1.4rem; }
-    .hist-event::before { content:'';position:absolute;left:-2.57rem;top:.25rem;width:10px;height:10px;border-radius:50%;background:var(--g);border:2px solid var(--d); }
-    .hist-year { font-family:'Bebas Neue',sans-serif;font-size:.95rem;color:var(--g);letter-spacing:2px; }
-    .hist-desc { font-size:.8rem;color:var(--w);opacity:.82;line-height:1.6;margin-top:.2rem; }
-    .hist-flag { display:flex;gap:2px;margin:.3rem 0 .8rem;width:50px; }
-    .hist-flag span { flex:1;height:5px; }
-    .france-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin:1.2rem 0 2rem; }
-    .france-card { background:var(--md);border:1px solid var(--nb);border-radius:10px;padding:1rem 1.1rem;transition:border-color .2s; }
-    .france-card:hover { border-color:var(--b); }
-    .france-card .fc-ico { font-size:1.6rem;margin-bottom:.4rem; }
-    .france-card h3 { font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);margin-bottom:.3rem; }
-    .france-card p { font-size:.75rem;color:var(--gr);line-height:1.55; }
+    #histoire-page .hph {
+      min-height: 220px;
+      background: linear-gradient(135deg, #002395 0%, #06214e 60%, #8b0000 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem 4vw 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hist-hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.2rem, 8vw, 4.5rem);
+      letter-spacing: 5px;
+      line-height: .9;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hist-hero-title span {
+      color: var(--g);
+    }
+
+    .hist-section {
+      padding: 2.4rem 4vw 1rem;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hist-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+      color: var(--g);
+      margin-bottom: .5rem;
+    }
+
+    .hist-section p {
+      font-size: .84rem;
+      line-height: 1.78;
+      color: var(--w);
+      opacity: .88;
+      margin-bottom: 1rem;
+    }
+
+    .hist-timeline {
+      position: relative;
+      padding-left: 2.2rem;
+      border-left: 2px solid var(--b);
+      margin: 1.4rem 0 2rem;
+    }
+
+    .hist-event {
+      position: relative;
+      margin-bottom: 1.4rem;
+    }
+
+    .hist-event::before {
+      content: '';
+      position: absolute;
+      left: -2.57rem;
+      top: .25rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--g);
+      border: 2px solid var(--d);
+    }
+
+    .hist-year {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: .95rem;
+      color: var(--g);
+      letter-spacing: 2px;
+    }
+
+    .hist-desc {
+      font-size: .8rem;
+      color: var(--w);
+      opacity: .82;
+      line-height: 1.6;
+      margin-top: .2rem;
+    }
+
+    .hist-flag {
+      display: flex;
+      gap: 2px;
+      margin: .3rem 0 .8rem;
+      width: 50px;
+    }
+
+    .hist-flag span {
+      flex: 1;
+      height: 5px;
+    }
+
+    .france-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 1.2rem 0 2rem;
+    }
+
+    .france-card {
+      background: var(--md);
+      border: 1px solid var(--nb);
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      transition: border-color .2s;
+    }
+
+    .france-card:hover {
+      border-color: var(--b);
+    }
+
+    .france-card .fc-ico {
+      font-size: 1.6rem;
+      margin-bottom: .4rem;
+    }
+
+    .france-card h3 {
+      font-family: 'Oswald', sans-serif;
+      font-size: .85rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--g);
+      margin-bottom: .3rem;
+    }
+
+    .france-card p {
+      font-size: .75rem;
+      color: var(--gr);
+      line-height: 1.55;
+    }
 
     /* ========== ADMIN PAGE ========== */
-    #admin-page .adm-header { background:linear-gradient(135deg,#06214e,#0c1428);border-bottom:1px solid var(--nb);padding:1.8rem 4vw 1.2rem;margin-top:54px; }
-    .adm-title { font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;color:var(--g); }
-    .adm-sub { font-size:.75rem;color:var(--gr);font-family:'Oswald',sans-serif;letter-spacing:1.5px;text-transform:uppercase;margin-top:.2rem; }
-    .adm-stats { display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;padding:1.6rem 4vw;max-width:900px;margin:0 auto; }
-    .adm-stat { background:var(--md);border:1px solid var(--nb);border-radius:10px;padding:1.2rem 1rem;text-align:center; }
-    .adm-stat .asn { font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--g); }
-    .adm-stat .asl { font-size:.6rem;color:var(--gr);letter-spacing:2px;text-transform:uppercase;font-family:'Oswald',sans-serif; }
-    .adm-table-wrap { padding:0 4vw 2rem;max-width:900px;margin:0 auto; }
-    .adm-section-title { font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gr);margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:1px solid var(--nb); }
-    .adm-table { width:100%;border-collapse:collapse; }
-    .adm-table th { font-family:'Oswald',sans-serif;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gr);padding:.5rem .6rem;text-align:left;border-bottom:1px solid var(--nb); }
-    .adm-table td { font-size:.74rem;padding:.55rem .6rem;border-bottom:1px solid rgba(100,140,220,.07);color:var(--w); }
-    .adm-table tr:hover td { background:rgba(240,192,64,.04); }
-    .adm-badge { display:inline-block;padding:2px 8px;border-radius:100px;font-size:.55rem;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase; }
-    .adm-badge.pend { background:rgba(240,192,64,.15);color:var(--g); }
-    .adm-badge.conf { background:rgba(80,200,100,.15);color:#70d880; }
-    .adm-empty { text-align:center;padding:2.5rem;color:var(--gr);font-size:.8rem; }
-    .adm-refresh { background:none;border:1px solid var(--nb);border-radius:6px;color:var(--gr);font-family:'Oswald',sans-serif;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;padding:.35rem .9rem;cursor:pointer;transition:border-color .2s,color .2s; }
-    .adm-refresh:hover { border-color:var(--g);color:var(--g); }
-    .adm-bar { display:flex;justify-content:space-between;align-items:center;padding:.6rem 4vw;max-width:900px;margin:0 auto; }
+    #admin-page .adm-header {
+      background: linear-gradient(135deg, #06214e, #0c1428);
+      border-bottom: 1px solid var(--nb);
+      padding: 1.8rem 4vw 1.2rem;
+      margin-top: 54px;
+    }
+
+    .adm-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 4px;
+      color: var(--g);
+    }
+
+    .adm-sub {
+      font-size: .75rem;
+      color: var(--gr);
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: .2rem;
+    }
+
+    .adm-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+      padding: 1.6rem 4vw;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .adm-stat {
+      background: var(--md);
+      border: 1px solid var(--nb);
+      border-radius: 10px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+
+    .adm-stat .asn {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--g);
+    }
+
+    .adm-stat .asl {
+      font-size: .6rem;
+      color: var(--gr);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Oswald', sans-serif;
+    }
+
+    .adm-table-wrap {
+      padding: 0 4vw 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .adm-section-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: .7rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gr);
+      margin-bottom: .8rem;
+      padding-bottom: .4rem;
+      border-bottom: 1px solid var(--nb);
+    }
+
+    .adm-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .adm-table th {
+      font-family: 'Oswald', sans-serif;
+      font-size: .6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gr);
+      padding: .5rem .6rem;
+      text-align: left;
+      border-bottom: 1px solid var(--nb);
+    }
+
+    .adm-table td {
+      font-size: .74rem;
+      padding: .55rem .6rem;
+      border-bottom: 1px solid rgba(100, 140, 220, .07);
+      color: var(--w);
+    }
+
+    .adm-table tr:hover td {
+      background: rgba(240, 192, 64, .04);
+    }
+
+    .adm-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: .55rem;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .adm-badge.pend {
+      background: rgba(240, 192, 64, .15);
+      color: var(--g);
+    }
+
+    .adm-badge.conf {
+      background: rgba(80, 200, 100, .15);
+      color: #70d880;
+    }
+
+    .adm-empty {
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--gr);
+      font-size: .8rem;
+    }
+
+    .adm-refresh {
+      background: none;
+      border: 1px solid var(--nb);
+      border-radius: 6px;
+      color: var(--gr);
+      font-family: 'Oswald', sans-serif;
+      font-size: .62rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+
+    .adm-refresh:hover {
+      border-color: var(--g);
+      color: var(--g);
+    }
+
+    .adm-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .6rem 4vw;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
 
     /* ================================================
@@ -1740,6 +2122,7 @@
       -webkit-tap-highlight-color: transparent;
       flex-shrink: 0;
     }
+
     .ham span {
       display: block;
       width: 22px;
@@ -1748,9 +2131,21 @@
       border-radius: 2px;
       transition: transform .28s ease, opacity .2s ease, background .2s;
     }
-    .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--g); }
-    .ham.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--g); }
+
+    .ham.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+      background: var(--g);
+    }
+
+    .ham.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .ham.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+      background: var(--g);
+    }
 
     /* — Full-screen mobile nav drawer — */
     .mob-drawer {
@@ -1758,18 +2153,23 @@
       position: fixed;
       inset: 0;
       top: 54px;
-      background: rgba(4,8,15,.98);
+      background: rgba(4, 8, 15, .98);
       backdrop-filter: blur(20px);
       z-index: 996;
       overflow-y: auto;
       padding: 1.5rem 6vw 3rem;
       flex-direction: column;
     }
-    .mob-drawer.open { display: flex; animation: pf .25s ease; }
+
+    .mob-drawer.open {
+      display: flex;
+      animation: pf .25s ease;
+    }
 
     .mob-drawer nav-link {
       display: block;
     }
+
     .mob-nav-link {
       display: flex;
       align-items: center;
@@ -1779,15 +2179,23 @@
       letter-spacing: 3px;
       color: var(--gr);
       padding: .85rem 0;
-      border-bottom: 1px solid rgba(100,140,220,.08);
+      border-bottom: 1px solid rgba(100, 140, 220, .08);
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: color .2s, padding-left .2s;
       text-decoration: none;
     }
+
     .mob-nav-link:active,
-    .mob-nav-link.active { color: var(--g); padding-left: .3rem; }
-    .mob-nav-link .mob-link-icon { font-size: 1.2rem; opacity: .6; }
+    .mob-nav-link.active {
+      color: var(--g);
+      padding-left: .3rem;
+    }
+
+    .mob-nav-link .mob-link-icon {
+      font-size: 1.2rem;
+      opacity: .6;
+    }
 
     .mob-user-card {
       margin-top: 1.5rem;
@@ -1799,24 +2207,45 @@
       align-items: center;
       gap: .9rem;
     }
-    .mob-user-card.show { display: flex; }
+
+    .mob-user-card.show {
+      display: flex;
+    }
+
     .mob-user-card .mob-av {
-      width: 40px; height: 40px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--g), var(--g2));
-      display: flex; align-items: center; justify-content: center;
-      font-size: .9rem; font-weight: 700; color: var(--d);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--d);
       flex-shrink: 0;
     }
-    .mob-user-card .mob-name { font-family: 'Oswald', sans-serif; font-size: .9rem; color: var(--w); }
-    .mob-user-card .mob-email { font-size: .68rem; color: var(--gr); margin-top: 2px; word-break: break-all; }
+
+    .mob-user-card .mob-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: .9rem;
+      color: var(--w);
+    }
+
+    .mob-user-card .mob-email {
+      font-size: .68rem;
+      color: var(--gr);
+      margin-top: 2px;
+      word-break: break-all;
+    }
+
     .mob-logout {
       margin-top: .8rem;
       display: none;
       width: 100%;
       padding: .85rem;
-      background: rgba(230,57,70,.08);
-      border: 1px solid rgba(230,57,70,.25);
+      background: rgba(230, 57, 70, .08);
+      border: 1px solid rgba(230, 57, 70, .25);
       border-radius: 8px;
       color: var(--r);
       font-family: 'Oswald', sans-serif;
@@ -1828,77 +2257,208 @@
       -webkit-tap-highlight-color: transparent;
       transition: background .2s;
     }
-    .mob-logout.show { display: block; }
-    .mob-logout:active { background: rgba(230,57,70,.18); }
+
+    .mob-logout.show {
+      display: block;
+    }
+
+    .mob-logout:active {
+      background: rgba(230, 57, 70, .18);
+    }
 
     @media (max-width: 768px) {
+
       /* Nav: hide desktop links, show hamburger */
-      .nls { display: none !important; }
-      .nu  { display: none !important; }
-      .ham { display: flex; }
+      .nls {
+        display: none !important;
+      }
+
+      .nu {
+        display: none !important;
+      }
+
+      .ham {
+        display: flex;
+      }
 
       /* ── Auth page ── */
-      #auth-page { padding: 5vh 6vw 4vh; justify-content: center; }
-      .abox { max-width: 100%; padding: 1.4rem; }
-      .atitle { font-size: clamp(2.4rem, 11vw, 4rem); }
+      #auth-page {
+        padding: 5vh 6vw 4vh;
+        justify-content: center;
+      }
+
+      .abox {
+        max-width: 100%;
+        padding: 1.4rem;
+      }
+
+      .atitle {
+        font-size: clamp(2.4rem, 11vw, 4rem);
+      }
 
       /* ── Home page ── */
-      .hh { padding: 80px 5vw 2.5rem; text-align: center; }
-      .htitle { font-size: clamp(2.8rem, 11vw, 5rem); }
-      .hdesc { font-size: .82rem; }
-      .hfcs { grid-template-columns: 1fr 1fr; max-width: 100%; gap: .6rem; }
-      .hsbar { gap: 1.2rem; }
-      .hsi h3 { font-size: 1.5rem; }
+      .hh {
+        padding: 80px 5vw 2.5rem;
+        text-align: center;
+      }
+
+      .htitle {
+        font-size: clamp(2.8rem, 11vw, 5rem);
+      }
+
+      .hdesc {
+        font-size: .82rem;
+      }
+
+      .hfcs {
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
+        gap: .6rem;
+      }
+
+      .hsbar {
+        gap: 1.2rem;
+      }
+
+      .hsi h3 {
+        font-size: 1.5rem;
+      }
 
       /* ── Page headers ── */
-      .ph { padding: 72px 5vw 1.4rem; }
-      .ptitle { font-size: clamp(1.6rem, 7vw, 2.8rem); }
-      .psub { font-size: .76rem; }
-      .bbtn { font-size: .58rem; }
+      .ph {
+        padding: 72px 5vw 1.4rem;
+      }
+
+      .ptitle {
+        font-size: clamp(1.6rem, 7vw, 2.8rem);
+      }
+
+      .psub {
+        font-size: .76rem;
+      }
+
+      .bbtn {
+        font-size: .58rem;
+      }
 
       /* ── Section padding ── */
-      .sp { padding: 1.2rem 4vw 2.5rem; }
-      .slbl { font-size: .6rem; }
+      .sp {
+        padding: 1.2rem 4vw 2.5rem;
+      }
+
+      .slbl {
+        font-size: .6rem;
+      }
 
       /* ── Filter bar — already scrollable, just ensure touch-friendly ── */
-      .fbar { padding: .5rem 4vw; gap: .4rem; }
-      .fbb { font-size: .6rem; padding: 5px 10px; }
+      .fbar {
+        padding: .5rem 4vw;
+        gap: .4rem;
+      }
+
+      .fbb {
+        font-size: .6rem;
+        padding: 5px 10px;
+      }
 
       /* ── Club rows (Ligue 1) ── */
-      .crow { grid-template-columns: 1fr; }
-      .cps  { border-left: none; border-top: 1px solid var(--nb); }
-      .csi  { height: 150px; }
-      .cfg  { grid-template-columns: repeat(3, 1fr); gap: .3rem; }
+      .crow {
+        grid-template-columns: 1fr;
+      }
+
+      .cps {
+        border-left: none;
+        border-top: 1px solid var(--nb);
+      }
+
+      .csi {
+        height: 150px;
+      }
+
+      .cfg {
+        grid-template-columns: repeat(3, 1fr);
+        gap: .3rem;
+      }
 
       /* ── Player cards ── */
-      .tcards { grid-template-columns: repeat(2, 1fr); gap: .65rem; padding: .8rem; }
-      .psg    { grid-template-columns: repeat(3, 1fr); gap: .6rem; }
-      .psc img { height: 90px; }
+      .tcards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: .65rem;
+        padding: .8rem;
+      }
+
+      .psg {
+        grid-template-columns: repeat(3, 1fr);
+        gap: .6rem;
+      }
+
+      .psc img {
+        height: 90px;
+      }
 
       /* ── Booking page ── */
-      .bfw { grid-template-columns: 1fr; gap: 1rem; }
-      .spv { position: static; }
-      .bform { padding: 1.1rem; }
-      .fr2 { grid-template-columns: 1fr; gap: 0; }
+      .bfw {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .spv {
+        position: static;
+      }
+
+      .bform {
+        padding: 1.1rem;
+      }
+
+      .fr2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
       .fg input,
       .fg select,
-      .fg textarea { font-size: 16px; /* prevents iOS auto-zoom */ padding: 11px 10px; }
-      .sbtn { font-size: .82rem; letter-spacing: 2px; padding: 14px; }
+      .fg textarea {
+        font-size: 16px;
+        /* prevents iOS auto-zoom */
+        padding: 11px 10px;
+      }
+
+      .sbtn {
+        font-size: .82rem;
+        letter-spacing: 2px;
+        padding: 14px;
+      }
 
       /* ── Booking confirmation modal ── */
-      .mbk { padding: .7rem; align-items: flex-end; }
+      .mbk {
+        padding: .7rem;
+        align-items: flex-end;
+      }
+
       .mbox {
         max-width: 100%;
         padding: 1.4rem 1.1rem 1.6rem;
         border-radius: 16px 16px 12px 12px;
         transform: translateY(100px) scale(1);
       }
-      .mbk.on .mbox { transform: translateY(0) scale(1); }
-      .etr { padding: .38rem 0; }
-      .etk { padding: .7rem; }
+
+      .mbk.on .mbox {
+        transform: translateY(0) scale(1);
+      }
+
+      .etr {
+        padding: .38rem 0;
+      }
+
+      .etk {
+        padding: .7rem;
+      }
 
       /* ── Club history modal ── */
-      .club-modal-bg { align-items: flex-end; }
+      .club-modal-bg {
+        align-items: flex-end;
+      }
+
       .club-modal {
         width: 100%;
         max-width: 100%;
@@ -1906,43 +2466,122 @@
         max-height: 82vh;
         padding: 1.5rem 1.2rem 2rem;
       }
-      .cmtitle { font-size: 1.6rem; }
-      .cmstat { gap: .4rem; }
+
+      .cmtitle {
+        font-size: 1.6rem;
+      }
+
+      .cmstat {
+        gap: .4rem;
+      }
 
       /* ── Histoire page ── */
-      #histoire-page .hph { padding-top: 54px; min-height: 180px; }
-      .hist-hero-title { font-size: clamp(1.7rem, 8vw, 3rem); }
-      .hist-section { padding: 1.4rem 5vw .5rem; }
-      .hist-section h2 { font-size: 1.3rem; }
-      .france-grid { grid-template-columns: 1fr 1fr; gap: .7rem; }
-      .france-card { padding: .8rem .9rem; }
+      #histoire-page .hph {
+        padding-top: 54px;
+        min-height: 180px;
+      }
+
+      .hist-hero-title {
+        font-size: clamp(1.7rem, 8vw, 3rem);
+      }
+
+      .hist-section {
+        padding: 1.4rem 5vw .5rem;
+      }
+
+      .hist-section h2 {
+        font-size: 1.3rem;
+      }
+
+      .france-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: .7rem;
+      }
+
+      .france-card {
+        padding: .8rem .9rem;
+      }
 
       /* ── Admin / Mes Réservations ── */
-      #admin-page .adm-header { padding: 1.2rem 5vw 1rem; margin-top: 54px; }
-      .adm-title { font-size: 1.5rem; }
-      .adm-stats { grid-template-columns: 1fr 1fr; gap: .7rem; padding: 1rem 4vw; }
-      .adm-stat { padding: .9rem .7rem; }
-      .adm-stat .asn { font-size: 1.5rem; }
-      .adm-table-wrap { padding: 0 0 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .adm-bar { padding: .5rem 4vw; }
-      .adm-table { min-width: 580px; }
+      #admin-page .adm-header {
+        padding: 1.2rem 5vw 1rem;
+        margin-top: 54px;
+      }
+
+      .adm-title {
+        font-size: 1.5rem;
+      }
+
+      .adm-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: .7rem;
+        padding: 1rem 4vw;
+      }
+
+      .adm-stat {
+        padding: .9rem .7rem;
+      }
+
+      .adm-stat .asn {
+        font-size: 1.5rem;
+      }
+
+      .adm-table-wrap {
+        padding: 0 0 1.5rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .adm-bar {
+        padding: .5rem 4vw;
+      }
+
+      .adm-table {
+        min-width: 580px;
+      }
+
       .adm-table th,
-      .adm-table td { padding: .45rem .5rem; font-size: .68rem; }
+      .adm-table td {
+        padding: .45rem .5rem;
+        font-size: .68rem;
+      }
 
       /* ── Footer ── */
-      footer { flex-direction: column; text-align: center; gap: .5rem; padding: 1.2rem 5vw; }
+      footer {
+        flex-direction: column;
+        text-align: center;
+        gap: .5rem;
+        padding: 1.2rem 5vw;
+      }
     }
 
     @media (max-width: 420px) {
-      /* Extra-small phones */
-      .hfcs { grid-template-columns: 1fr; }
-      .france-grid { grid-template-columns: 1fr; }
-      .tcards { grid-template-columns: repeat(2, 1fr); }
-      .psg { grid-template-columns: repeat(2, 1fr); }
-      .hist-section { padding: 1.2rem 4vw .4rem; }
-      .htitle { font-size: clamp(2.4rem, 13vw, 4rem); }
-    }
 
+      /* Extra-small phones */
+      .hfcs {
+        grid-template-columns: 1fr;
+      }
+
+      .france-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tcards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .psg {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hist-section {
+        padding: 1.2rem 4vw .4rem;
+      }
+
+      .htitle {
+        font-size: clamp(2.4rem, 13vw, 4rem);
+      }
+    }
   </style>
 </head>
 
@@ -1959,7 +2598,8 @@
       <div class="etk">
         <div class="eth">
           <div class="etl">⚽ PROKICK NETWORK</div>
-          <div class="etf"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f0d0000040601082f1f1d0004060c0441091d">[email&#160;protected]</a></div>
+          <div class="etf"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+              data-cfemail="6f0d0000040601082f1f1d0004060c0441091d">[email&#160;protected]</a></div>
         </div>
         <div class="ets">Confirmation de Réservation</div>
         <div class="etr"><span>Joueur</span><strong id="m-pl">—</strong></div>
@@ -1991,10 +2631,11 @@
       <div class="nav-av" id="nav-av">I</div>
       <div class="nav-un" id="nav-un">Invité</div>
       <div class="nav-logout" onclick="doLogout()" title="Se déconnecter">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-          <polyline points="16 17 21 12 16 7"/>
-          <line x1="21" y1="12" x2="9" y2="12"/>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+          <polyline points="16 17 21 12 16 7" />
+          <line x1="21" y1="12" x2="9" y2="12" />
         </svg>
       </div>
     </div>
@@ -2011,7 +2652,8 @@
     <div class="mob-nav-link" onclick="mobGo('europe')"><span class="mob-link-icon">🌍</span>Europe</div>
     <div class="mob-nav-link" onclick="mobGo('histoire')"><span class="mob-link-icon">📖</span>Histoire</div>
     <div class="mob-nav-link" onclick="mobGo('booking')"><span class="mob-link-icon">⚽</span>Réserver</div>
-    <div class="mob-nav-link" onclick="mobGo('admin')" style="color:var(--g)"><span class="mob-link-icon">📋</span>Mes Réservations</div>
+    <div class="mob-nav-link" onclick="mobGo('admin')" style="color:var(--g)"><span class="mob-link-icon">📋</span>Mes
+      Réservations</div>
     <div class="mob-user-card" id="mobUserCard">
       <div class="mob-av" id="mobAv">I</div>
       <div>
@@ -2047,6 +2689,11 @@
         <div class="af"><label>Mot de passe</label><input type="password" id="lp" placeholder="••••••••"
             autocomplete="current-password" /></div>
         <div class="aerr" id="lerr"></div>
+        <div style="text-align:right;margin-bottom:.5rem;">
+          <span onclick="showForgotPassword()"
+            style="font-size:.72rem;color:#7a8faa;cursor:pointer;text-decoration:underline;font-family:'Barlow',sans-serif;">Mot
+            de passe oublié ?</span>
+        </div>
         <button class="abtn" onclick="doLogin()">Se Connecter →</button>
         <div class="adiv"><span>ou</span></div>
         <button class="agbtn" onclick="guestIn()">Continuer en tant qu'Invité</button>
@@ -4084,7 +4731,8 @@
   <div class="club-modal-bg" id="clubModal">
     <div class="club-modal">
       <div class="cmclose" onclick="closeClubModal()">✕</div>
-      <div class="cmbadge" id="cm-badge" style="background:rgba(0,35,149,.25);border:1px solid rgba(0,35,149,.5);color:#6ab0ff;">🇫🇷 Ligue 1</div>
+      <div class="cmbadge" id="cm-badge"
+        style="background:rgba(0,35,149,.25);border:1px solid rgba(0,35,149,.5);color:#6ab0ff;">🇫🇷 Ligue 1</div>
       <div class="cmtitle" id="cm-title">Club</div>
       <div class="cmsubt" id="cm-subt">Fondé • Ville</div>
       <div class="cmstat" id="cm-stats"></div>
@@ -4103,45 +4751,133 @@
     </div>
     <div class="hist-section rv">
       <h2>Les Origines du Football</h2>
-      <p>Le football moderne est né en Angleterre en 1863, lorsque la Football Association fut fondée à Londres. Mais ses racines plongent bien plus profondément dans l'histoire : des jeux de balle similaires existaient en Chine dès le IIe siècle avant J.-C. sous le nom de <em>cuju</em>, tandis que les Grecs et les Romains pratiquaient leurs propres variantes.</p>
-      <p>Ce n'est qu'à partir du XIXe siècle, dans les écoles et universités britanniques, que les règles furent codifiées et que le sport prit la forme qu'on lui connaît aujourd'hui.</p>
+      <p>Le football moderne est né en Angleterre en 1863, lorsque la Football Association fut fondée à Londres. Mais
+        ses racines plongent bien plus profondément dans l'histoire : des jeux de balle similaires existaient en Chine
+        dès le IIe siècle avant J.-C. sous le nom de <em>cuju</em>, tandis que les Grecs et les Romains pratiquaient
+        leurs propres variantes.</p>
+      <p>Ce n'est qu'à partir du XIXe siècle, dans les écoles et universités britanniques, que les règles furent
+        codifiées et que le sport prit la forme qu'on lui connaît aujourd'hui.</p>
     </div>
     <div class="hist-section rv">
       <h2>Le Football en France 🇫🇷</h2>
-      <p>La France occupe une place particulière dans l'histoire du football mondial. Le pays a joué un rôle fondateur dans la création des grandes institutions du sport : <strong style="color:var(--g)">Jules Rimet</strong>, président de la FIFA de 1921 à 1954, est le père de la Coupe du Monde. C'est lui qui lança le premier tournoi en <strong style="color:var(--g)">Uruguay en 1930</strong>.</p>
-      <p>L'UEFA, l'organe directeur du football européen, fut fondée en 1954 à Bâle sous impulsion française. La Coupe d'Europe des clubs champions — ancêtre de la Ligue des Champions — fut imaginée par le journaliste français Gabriel Hanot du journal L'Équipe en 1955.</p>
+      <p>La France occupe une place particulière dans l'histoire du football mondial. Le pays a joué un rôle fondateur
+        dans la création des grandes institutions du sport : <strong style="color:var(--g)">Jules Rimet</strong>,
+        président de la FIFA de 1921 à 1954, est le père de la Coupe du Monde. C'est lui qui lança le premier tournoi en
+        <strong style="color:var(--g)">Uruguay en 1930</strong>.</p>
+      <p>L'UEFA, l'organe directeur du football européen, fut fondée en 1954 à Bâle sous impulsion française. La Coupe
+        d'Europe des clubs champions — ancêtre de la Ligue des Champions — fut imaginée par le journaliste français
+        Gabriel Hanot du journal L'Équipe en 1955.</p>
     </div>
     <div class="hist-section rv">
       <h2>Chronologie Clé</h2>
       <div class="hist-timeline">
-        <div class="hist-event"><div class="hist-year">1863</div><div class="hist-desc">Fondation de la Football Association en Angleterre — codification des règles modernes.</div></div>
-        <div class="hist-event"><div class="hist-year">1882</div><div class="hist-desc">Fondation du premier club de football français : le <strong>Le Havre Athletic Club</strong>, créé par des marins britanniques.</div></div>
-        <div class="hist-event"><div class="hist-year">1904</div><div class="hist-desc">Fondation de la <strong>FIFA</strong> à Paris, avec la France parmi les membres fondateurs. Robert Guérin (français) devient le premier président.</div></div>
-        <div class="hist-event"><div class="hist-year">1919</div><div class="hist-desc">Création de la <strong>Fédération Française de Football (FFF)</strong>.</div></div>
-        <div class="hist-event"><div class="hist-year">1930</div><div class="hist-desc">Première Coupe du Monde en Uruguay, organisée par Jules Rimet. La France participe dès le premier tournoi.</div></div>
-        <div class="hist-event"><div class="hist-year">1932</div><div class="hist-desc">Lancement du <strong>Championnat de France professionnel</strong> — ancêtre de la Ligue 1.</div></div>
-        <div class="hist-event"><div class="hist-year">1958</div><div class="hist-desc"><strong>Just Fontaine</strong> marque 13 buts en une seule Coupe du Monde en Suède — un record absolu toujours inégalé.</div></div>
-        <div class="hist-event"><div class="hist-year">1984</div><div class="hist-desc">La France remporte son premier grand titre : le <strong>Championnat d'Europe</strong> à domicile avec Platini, Giresse et Tigana. Michel Platini marque 9 buts en 5 matches.</div></div>
-        <div class="hist-event"><div class="hist-year">1998</div><div class="hist-desc">🏆 <strong>Championnat du Monde à domicile</strong>. La France de Zidane, Thuram, Desailly et Deschamps bat le Brésil 3-0 en finale au Stade de France. Zinédine Zidane inscrit deux buts de la tête.</div></div>
-        <div class="hist-event"><div class="hist-year">2000</div><div class="hist-desc">Doublé historique : les Bleus remportent l'<strong>Euro 2000</strong> en Belgique/Pays-Bas avec le but en or de David Trezeguet en finale contre l'Italie.</div></div>
-        <div class="hist-event"><div class="hist-year">2018</div><div class="hist-desc">🏆 Deuxième titre mondial en Russie. La <strong>génération dorée</strong> emmenée par Mbappé, Griezmann et Pogba bat la Croatie 4-2 en finale.</div></div>
+        <div class="hist-event">
+          <div class="hist-year">1863</div>
+          <div class="hist-desc">Fondation de la Football Association en Angleterre — codification des règles modernes.
+          </div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1882</div>
+          <div class="hist-desc">Fondation du premier club de football français : le <strong>Le Havre Athletic
+              Club</strong>, créé par des marins britanniques.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1904</div>
+          <div class="hist-desc">Fondation de la <strong>FIFA</strong> à Paris, avec la France parmi les membres
+            fondateurs. Robert Guérin (français) devient le premier président.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1919</div>
+          <div class="hist-desc">Création de la <strong>Fédération Française de Football (FFF)</strong>.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1930</div>
+          <div class="hist-desc">Première Coupe du Monde en Uruguay, organisée par Jules Rimet. La France participe dès
+            le premier tournoi.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1932</div>
+          <div class="hist-desc">Lancement du <strong>Championnat de France professionnel</strong> — ancêtre de la Ligue
+            1.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1958</div>
+          <div class="hist-desc"><strong>Just Fontaine</strong> marque 13 buts en une seule Coupe du Monde en Suède — un
+            record absolu toujours inégalé.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1984</div>
+          <div class="hist-desc">La France remporte son premier grand titre : le <strong>Championnat d'Europe</strong> à
+            domicile avec Platini, Giresse et Tigana. Michel Platini marque 9 buts en 5 matches.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">1998</div>
+          <div class="hist-desc">🏆 <strong>Championnat du Monde à domicile</strong>. La France de Zidane, Thuram,
+            Desailly et Deschamps bat le Brésil 3-0 en finale au Stade de France. Zinédine Zidane inscrit deux buts de
+            la tête.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">2000</div>
+          <div class="hist-desc">Doublé historique : les Bleus remportent l'<strong>Euro 2000</strong> en
+            Belgique/Pays-Bas avec le but en or de David Trezeguet en finale contre l'Italie.</div>
+        </div>
+        <div class="hist-event">
+          <div class="hist-year">2018</div>
+          <div class="hist-desc">🏆 Deuxième titre mondial en Russie. La <strong>génération dorée</strong> emmenée par
+            Mbappé, Griezmann et Pogba bat la Croatie 4-2 en finale.</div>
+        </div>
       </div>
     </div>
     <div class="hist-section rv">
       <h2>Légendes Françaises</h2>
       <div class="france-grid">
-        <div class="france-card"><div class="fc-ico">⭐</div><h3>Zinédine Zidane</h3><p>Considéré comme l'un des meilleurs joueurs de tous les temps. Ballon d'Or 1998, triple champion d'Europe avec le Real Madrid comme entraîneur.</p></div>
-        <div class="france-card"><div class="fc-ico">🥇</div><h3>Michel Platini</h3><p>Triple Ballon d'Or (1983-85). Capitaine de la France lors de la victoire à l'Euro 1984. 41 buts en 72 sélections.</p></div>
-        <div class="france-card"><div class="fc-ico">⚡</div><h3>Kylian Mbappé</h3><p>Champion du monde à 19 ans en 2018. Meilleur buteur de l'équipe de France de l'histoire avec plus de 50 buts. Ambassadeur du football moderne.</p></div>
-        <div class="france-card"><div class="fc-ico">🦁</div><h3>Thierry Henry</h3><p>Meilleur buteur de l'histoire d'Arsenal. Champion du monde 1998, champion d'Europe 2000. 51 buts en équipe de France.</p></div>
-        <div class="france-card"><div class="fc-ico">🧤</div><h3>Lilian Thuram</h3><p>Record de sélections en équipe de France (142). Ses deux buts contre la Croatie en demi-finale du Mondial 1998 restent légendaires.</p></div>
-        <div class="france-card"><div class="fc-ico">📐</div><h3>Just Fontaine</h3><p>Détenteur du record absolu de buts en une seule Coupe du Monde : 13 buts en 6 matches lors du Mondial 1958 en Suède.</p></div>
+        <div class="france-card">
+          <div class="fc-ico">⭐</div>
+          <h3>Zinédine Zidane</h3>
+          <p>Considéré comme l'un des meilleurs joueurs de tous les temps. Ballon d'Or 1998, triple champion d'Europe
+            avec le Real Madrid comme entraîneur.</p>
+        </div>
+        <div class="france-card">
+          <div class="fc-ico">🥇</div>
+          <h3>Michel Platini</h3>
+          <p>Triple Ballon d'Or (1983-85). Capitaine de la France lors de la victoire à l'Euro 1984. 41 buts en 72
+            sélections.</p>
+        </div>
+        <div class="france-card">
+          <div class="fc-ico">⚡</div>
+          <h3>Kylian Mbappé</h3>
+          <p>Champion du monde à 19 ans en 2018. Meilleur buteur de l'équipe de France de l'histoire avec plus de 50
+            buts. Ambassadeur du football moderne.</p>
+        </div>
+        <div class="france-card">
+          <div class="fc-ico">🦁</div>
+          <h3>Thierry Henry</h3>
+          <p>Meilleur buteur de l'histoire d'Arsenal. Champion du monde 1998, champion d'Europe 2000. 51 buts en équipe
+            de France.</p>
+        </div>
+        <div class="france-card">
+          <div class="fc-ico">🧤</div>
+          <h3>Lilian Thuram</h3>
+          <p>Record de sélections en équipe de France (142). Ses deux buts contre la Croatie en demi-finale du Mondial
+            1998 restent légendaires.</p>
+        </div>
+        <div class="france-card">
+          <div class="fc-ico">📐</div>
+          <h3>Just Fontaine</h3>
+          <p>Détenteur du record absolu de buts en une seule Coupe du Monde : 13 buts en 6 matches lors du Mondial 1958
+            en Suède.</p>
+        </div>
       </div>
     </div>
     <div class="hist-section rv">
       <h2>La Ligue 1 — Fleuron du Football Français</h2>
-      <p>Fondée en 1932 sous le nom de <strong>Division 1</strong>, rebaptisée <strong>Ligue 1</strong> en 2002, la première division française est l'une des cinq grandes ligues européennes. Elle a produit des joueurs mondiaux comme Zidane, Mbappé, Henry, Cantona et bien d'autres.</p>
-      <p>Le <strong>Paris Saint-Germain</strong> domine le championnat depuis les années 2010 grâce aux investissements qataris. Mais l'histoire de la Ligue 1 est riche : l'Olympique de Marseille reste le seul club français à avoir remporté la <strong>Ligue des Champions</strong> (1993), et l'AS Monaco a produit certaines des plus belles équipes du football européen.</p>
+      <p>Fondée en 1932 sous le nom de <strong>Division 1</strong>, rebaptisée <strong>Ligue 1</strong> en 2002, la
+        première division française est l'une des cinq grandes ligues européennes. Elle a produit des joueurs mondiaux
+        comme Zidane, Mbappé, Henry, Cantona et bien d'autres.</p>
+      <p>Le <strong>Paris Saint-Germain</strong> domine le championnat depuis les années 2010 grâce aux investissements
+        qataris. Mais l'histoire de la Ligue 1 est riche : l'Olympique de Marseille reste le seul club français à avoir
+        remporté la <strong>Ligue des Champions</strong> (1993), et l'AS Monaco a produit certaines des plus belles
+        équipes du football européen.</p>
     </div>
     <footer>
       <div class="fl"><span class="l1p" style="font-size:.72rem;padding:2px 5px;">L1</span>PRO<span>KICK</span></div>
@@ -4156,10 +4892,22 @@
       <div class="adm-sub">Historique de vos réservations · ProKick Network</div>
     </div>
     <div class="adm-stats" id="adm-stats">
-      <div class="adm-stat"><div class="asn" id="adm-total">0</div><div class="asl">Mes Réservations</div></div>
-      <div class="adm-stat"><div class="asn" id="adm-pending" style="font-size:.85rem;letter-spacing:0;">—</div><div class="asl">Mon Compte</div></div>
-      <div class="adm-stat"><div class="asn" id="adm-players">0</div><div class="asl">Joueurs Réservés</div></div>
-      <div class="adm-stat"><div class="asn" id="adm-today">0</div><div class="asl">Aujourd'hui</div></div>
+      <div class="adm-stat">
+        <div class="asn" id="adm-total">0</div>
+        <div class="asl">Mes Réservations</div>
+      </div>
+      <div class="adm-stat">
+        <div class="asn" id="adm-pending" style="font-size:.85rem;letter-spacing:0;">—</div>
+        <div class="asl">Mon Compte</div>
+      </div>
+      <div class="adm-stat">
+        <div class="asn" id="adm-players">0</div>
+        <div class="asl">Joueurs Réservés</div>
+      </div>
+      <div class="adm-stat">
+        <div class="asn" id="adm-today">0</div>
+        <div class="asl">Aujourd'hui</div>
+      </div>
     </div>
     <div class="adm-table-wrap">
       <div class="adm-bar">
@@ -4180,7 +4928,9 @@
           </tr>
         </thead>
         <tbody id="adm-tbody">
-          <tr><td colspan="7" class="adm-empty">Chargement des réservations...</td></tr>
+          <tr>
+            <td colspan="7" class="adm-empty">Chargement des réservations...</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -4190,7 +4940,8 @@
     </footer>
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script>
     var sn = '', sv = '', sw = '', sc = '', sk = '';
     var PI = { 'mbappe': null, 'neymar': null, 'haaland': null, 'debruyne': null, 'david': null, 'ronaldo': null, 'yamal': null, 'lewandowski': null, 'martinez': null, 'jesus': null, 'odegaard': null, 'saka': null, 'taa': null, 'nunez': null, 'salah': null, 'sane': null, 'musiala': null, 'kane': null, 'pedri': null, 'foden': null, 'rodrygo': null, 'vinicius': null, 'bellingham': null, 'brandt': null, 'fullkrug': null, 'adeyemi': null, 'hernandez': null, 'barella': null, 'thuram': null, 'leao': null, 'giroud': null, 'hakimi': null, 'dembele': null };
     function stab(t) {
@@ -4357,7 +5108,7 @@
         badgeColor: 'background:rgba(0,35,149,.25);border:1px solid rgba(0,35,149,.5);color:#6ab0ff;',
         subt: 'Fondé en 1970 · Paris, France',
         stats: [
-          {n:'12', l:'Titres L1'}, {n:'14', l:'Coupes de France'}, {n:'11', l:'Coupes Ligue'}, {n:'1', l:'C1 (2020 F.)'}
+          { n: '12', l: 'Titres L1' }, { n: '14', l: 'Coupes de France' }, { n: '11', l: 'Coupes Ligue' }, { n: '1', l: 'C1 (2020 F.)' }
         ],
         hist: `<p>Le Paris Saint-Germain fut fondé en 1970 par la fusion du Paris FC et du Stade Saint-Germain. Après des débuts modestes, le club connut une ascension fulgurante grâce au rachat par des investisseurs américains, puis en 2011 par le fonds souverain qatari Qatar Sports Investments (QSI).</p><p>Sous la direction sportive de Leonardo et les entraîneurs Carlo Ancelotti, Laurent Blanc puis Thomas Tuchel, le PSG s'imposa comme la force dominante du football français, remportant 9 des 12 dernières éditions de la Ligue 1.</p><p>En 2022, le club réalisa le coup de théâtre du siècle en signant <strong>Kylian Mbappé, Neymar Jr et Lionel Messi</strong> simultanément. Le Parc des Princes, inauguré en 1897 et rénové pour les Jeux Olympiques de Paris 1924 et 1998, reste le sanctuaire du club avec une capacité de 47 929 spectateurs.</p><p>Le PSG a atteint la finale de la Ligue des Champions en 2020, battant l'Atalanta et Leipzig en quarts et demis, avant de s'incliner face au Bayern Munich (0-1) grâce à un but de Kingsley Coman.</p>`
       },
@@ -4367,7 +5118,7 @@
         badgeColor: 'background:rgba(0,91,187,.2);border:1px solid rgba(0,91,187,.5);color:#5bbfff;',
         subt: 'Fondé en 1899 · Marseille, France',
         stats: [
-          {n:'9', l:'Titres L1'}, {n:'10', l:'Coupes de France'}, {n:'1', l:'Ligue Champions'}, {n:'1', l:'Coupe UEFA'}
+          { n: '9', l: 'Titres L1' }, { n: '10', l: 'Coupes de France' }, { n: '1', l: 'Ligue Champions' }, { n: '1', l: 'Coupe UEFA' }
         ],
         hist: `<p>L'Olympique de Marseille est le club de football le plus titré et le plus populaire de France. Fondé en 1899, il incarne l'âme et la passion du Midi. Le Vélodrome, avec ses 67 394 places, est régulièrement l'un des stades les plus chauds d'Europe.</p><p>Sous la présidence de Bernard Tapie et le règne de l'entraîneur Raymond Goethals, l'OM connut son âge d'or dans les années 1990 : cinq titres de champion de France consécutifs (1989-1993) et surtout la <strong>Ligue des Champions 1993</strong>, unique titre européen d'un club français, remportée face à l'AC Milan (1-0) avec un but de Basile Boli.</p><p>Cette victoire fut cependant entachée par le scandale VA-OM, dans lequel le club fut accusé d'avoir acheté un match de Division 1 contre Valenciennes. L'OM fut rétrogradé en D2 et exclu de la Ligue des Champions 1993-94.</p><p>Des joueurs légendaires comme Didier Deschamps, Rudi Völler, Chris Waddle, Samir Nasri et plus récemment Dimitri Payet ont marqué l'histoire phocéenne. Le club reste le seul représentant français dans le top des clubs européens les plus titrés.</p>`
       },
@@ -4377,7 +5128,7 @@
         badgeColor: 'background:rgba(150,150,150,.15);border:1px solid rgba(200,200,200,.3);color:#ccc;',
         subt: 'Fondé en 1950 · Lyon, France',
         stats: [
-          {n:'7', l:'Titres L1'}, {n:'5', l:'Coupes de France'}, {n:'8', l:'CL Quart'}, {n:'1', l:'C. UEFA (F.)'}
+          { n: '7', l: 'Titres L1' }, { n: '5', l: 'Coupes de France' }, { n: '8', l: 'CL Quart' }, { n: '1', l: 'C. UEFA (F.)' }
         ],
         hist: `<p>L'Olympique Lyonnais, fondé en 1950, est l'un des clubs les plus remarquables de l'histoire du football français. Sous la présidence de Jean-Michel Aulas depuis 1987, Lyon accomplit l'exploit inédit de remporter <strong>sept championnats de France consécutifs</strong> entre 2002 et 2008.</p><p>Cette période dorée fut portée par des joueurs d'exception : Michael Essien, Mahamadou Diarra, Sidney Govou, Karim Benzema, Loïc Rémy et l'international français Juninho Pernambucano, maître des coups francs.</p><p>En Ligue des Champions, Lyon fit trembler les plus grands clubs européens, atteignant les demi-finales en 2010, éliminant notamment le Real Madrid et le Manchester United. En 2020, en pleine pandémie, ils atteignirent à nouveau les demi-finales dans la bulle de Lisbonne, éliminant Manchester City avant de s'incliner face au Bayern Munich.</p><p>Le nouveau stade Groupama Stadium, inauguré en 2016 avec une capacité de 59 186 places, est l'un des plus modernes d'Europe, construit sans subvention publique — un modèle économique unique en France.</p>`
       },
@@ -4387,7 +5138,7 @@
         badgeColor: 'background:rgba(220,50,50,.15);border:1px solid rgba(220,50,50,.4);color:#ff8080;',
         subt: 'Fondé en 1924 · Monaco, Principauté',
         stats: [
-          {n:'8', l:'Titres L1'}, {n:'5', l:'Coupes de France'}, {n:'1', l:'CL Finale'}, {n:'1', l:'C. UEFA'}
+          { n: '8', l: 'Titres L1' }, { n: '5', l: 'Coupes de France' }, { n: '1', l: 'CL Finale' }, { n: '1', l: 'C. UEFA' }
         ],
         hist: `<p>L'AS Monaco, club de la Principauté de Monaco, joue en Ligue 1 française malgré son statut de club d'un État indépendant. Cette particularité géographique lui confère une identité unique dans le paysage du football européen.</p><p>Fondé en 1924, Monaco connut ses grandes heures dans les années 1980 et 1990, notamment avec Arsène Wenger comme entraîneur de 1987 à 1994. Le titre de champion de France 1988 et la finale de la Coupe UEFA 1992 perdue contre Werder Brême marquèrent cette époque.</p><p>En 2004, sous Didier Deschamps, Monaco réalisa l'exploit d'atteindre la finale de la Ligue des Champions, éliminant le Real Madrid et le Chelsea de Roman Abramovitch avant de s'incliner face au FC Porto de José Mourinho (0-3).</p><p>La résurgence la plus spectaculaire reste sans conteste la saison 2016-17 : emmenés par Leonardo Jardim, avec Kylian Mbappé (18 ans), Bernardo Silva, Thomas Lemar et Radamel Falcao, Monaco remporta le championnat et atteignit les demi-finales de la Ligue des Champions, éliminant Manchester City et le Borussia Dortmund. Ce titre reste le dernier d'un club non-PSG en Ligue 1.</p>`
       },
@@ -4397,7 +5148,7 @@
         badgeColor: 'background:rgba(0,60,150,.2);border:1px solid rgba(0,100,200,.4);color:#60a8ff;',
         subt: 'Fondé en 1944 · Lille, France',
         stats: [
-          {n:'4', l:'Titres L1'}, {n:'6', l:'Coupes de France'}, {n:'1', l:'CL 8e finale'}, {n:'1', l:'Doublé 2011'}
+          { n: '4', l: 'Titres L1' }, { n: '6', l: 'Coupes de France' }, { n: '1', l: 'CL 8e finale' }, { n: '1', l: 'Doublé 2011' }
         ],
         hist: `<p>Le LOSC Lille Métropole est l'un des clubs les plus historiques du football français, fondé en 1944. Situé dans la métropole lilloise, au carrefour de la France, de la Belgique et des influences britanniques, Lille a toujours été un foyer de talent footballistique.</p><p>Le club connut son premier âge d'or dans les années 1950, avec deux titres de champion de France (1954, 1946) et deux Coupes de France. Après des décennies de disette, Lille revint au premier plan grâce au travail de Vahid Halilhodžić et notamment Claude Puel.</p><p>Sous la houlette de Rudi Garcia, Lille réalisa l'exploit de remporter le <strong>Doublé Championnat-Coupe de France en 2011</strong>, avec une équipe emmenée par Eden Hazard, Moussa Sow et Gervinho. Un titre historique qui valut à Rudi Garcia le titre d'entraîneur de l'année en UEFA.</p><p>Le dernier exploit en date reste la saison 2020-21 : sous la direction de Christophe Galtier et avec Jonathan David, Burak Yilmaz et Renato Sanches, Lille remporta son 4e titre de champion de France, créant la surprise face au PSG. Une victoire saluée dans tout le monde footballistique comme l'un des plus beaux titres de l'ère moderne.</p>`
       }
@@ -4410,17 +5161,17 @@
       document.getElementById('cm-badge').style.cssText = c.badgeColor;
       document.getElementById('cm-title').textContent = c.name;
       document.getElementById('cm-subt').textContent = c.subt;
-      var statsHtml = c.stats.map(function(s){ return '<div class="cmst"><span>'+s.n+'</span><small>'+s.l+'</small></div>'; }).join('');
+      var statsHtml = c.stats.map(function (s) { return '<div class="cmst"><span>' + s.n + '</span><small>' + s.l + '</small></div>'; }).join('');
       document.getElementById('cm-stats').innerHTML = statsHtml;
       document.getElementById('cm-hist').innerHTML = c.hist;
       document.getElementById('clubModal').classList.add('on');
-      document.body.style.overflow='hidden';
+      document.body.style.overflow = 'hidden';
     }
     function closeClubModal() {
       document.getElementById('clubModal').classList.remove('on');
-      document.body.style.overflow='';
+      document.body.style.overflow = '';
     }
-    document.getElementById('clubModal').addEventListener('click', function(e){ if(e.target===this) closeClubModal(); });
+    document.getElementById('clubModal').addEventListener('click', function (e) { if (e.target === this) closeClubModal(); });
 
     // =============================================
     // ADMIN DASHBOARD — shows only current user's bookings
@@ -4445,9 +5196,9 @@
         .where('userId', '==', user.uid)
         .orderBy('createdAt', 'desc')
         .get()
-        .then(function(snapshot) {
+        .then(function (snapshot) {
           var bookings = [];
-          snapshot.forEach(function(doc) { bookings.push(Object.assign({ _id: doc.id }, doc.data())); });
+          snapshot.forEach(function (doc) { bookings.push(Object.assign({ _id: doc.id }, doc.data())); });
 
           // Stats — scoped to this user only
           document.getElementById('adm-total').textContent = bookings.length;
@@ -4456,7 +5207,7 @@
           var today = new Date().toDateString();
           var todayCount = 0;
           var totalValue = 0;
-          bookings.forEach(function(b) {
+          bookings.forEach(function (b) {
             if (b.playerName) uniquePlayers[b.playerName] = 1;
             if (b.createdAt && b.createdAt.toDate && b.createdAt.toDate().toDateString() === today) todayCount++;
           });
@@ -4472,11 +5223,11 @@
             return;
           }
 
-          tbody.innerHTML = bookings.map(function(b) {
+          tbody.innerHTML = bookings.map(function (b) {
             var dateStr = '—';
             if (b.createdAt && b.createdAt.toDate) {
               var d = b.createdAt.toDate();
-              dateStr = d.toLocaleDateString('fr-FR', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+              dateStr = d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
             }
             var avatar = (b.bookerName || user.email || '?').charAt(0).toUpperCase();
             return '<tr>' +
@@ -4488,25 +5239,25 @@
               '<td style="font-size:.72rem;">' + (b.eventType || '—') + '</td>' +
               '<td style="color:var(--g);font-size:.72rem;">€' + (b.playerValue || '—') + '</td>' +
               '<td style="font-size:.68rem;color:var(--gr);">' + dateStr + '</td>' +
-            '</tr>';
+              '</tr>';
           }).join('');
         })
-        .catch(function(err) {
+        .catch(function (err) {
           // If index not ready yet, fall back without orderBy
           if (err.code === 'failed-precondition' || err.message.indexOf('index') !== -1) {
             db.collection('bookings')
               .where('userId', '==', user.uid)
               .get()
-              .then(function(snapshot) {
+              .then(function (snapshot) {
                 var bookings = [];
-                snapshot.forEach(function(doc) { bookings.push(Object.assign({ _id: doc.id }, doc.data())); });
-                bookings.sort(function(a,b){ return (b.createdAt && b.createdAt.seconds || 0) - (a.createdAt && a.createdAt.seconds || 0); });
+                snapshot.forEach(function (doc) { bookings.push(Object.assign({ _id: doc.id }, doc.data())); });
+                bookings.sort(function (a, b) { return (b.createdAt && b.createdAt.seconds || 0) - (a.createdAt && a.createdAt.seconds || 0); });
                 document.getElementById('adm-total').textContent = bookings.length;
                 if (!bookings.length) { tbody.innerHTML = '<tr><td colspan="8" class="adm-empty">Vous n\'avez pas encore de réservations.</td></tr>'; return; }
-                tbody.innerHTML = bookings.map(function(b) {
-                  var dateStr = b.createdAt && b.createdAt.toDate ? b.createdAt.toDate().toLocaleDateString('fr-FR', {day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '—';
+                tbody.innerHTML = bookings.map(function (b) {
+                  var dateStr = b.createdAt && b.createdAt.toDate ? b.createdAt.toDate().toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
                   var avatar = (b.bookerName || user.email || '?').charAt(0).toUpperCase();
-                  return '<tr><td><code style="color:var(--g);font-size:.68rem;">'+(b.reference||'—')+'</code></td><td><div style="display:flex;align-items:center;gap:.5rem;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g2));display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--d);">'+avatar+'</div><div><div style="font-size:.75rem;">'+(b.bookerName||'—')+'</div><div style="font-size:.62rem;color:var(--gr);">'+(user.email||'')+'</div></div></div></td><td style="color:var(--g);font-weight:600;">'+(b.playerName||'—')+'</td><td style="color:var(--gr);font-size:.72rem;">'+(b.playerClub||'—')+'</td><td style="font-size:.72rem;">'+(b.eventDate||'—')+'</td><td style="font-size:.72rem;">'+(b.eventType||'—')+'</td><td style="color:var(--g);font-size:.72rem;">€'+(b.playerValue||'—')+'</td><td style="font-size:.68rem;color:var(--gr);">'+dateStr+'</td></tr>';
+                  return '<tr><td><code style="color:var(--g);font-size:.68rem;">' + (b.reference || '—') + '</code></td><td><div style="display:flex;align-items:center;gap:.5rem;"><div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g2));display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:var(--d);">' + avatar + '</div><div><div style="font-size:.75rem;">' + (b.bookerName || '—') + '</div><div style="font-size:.62rem;color:var(--gr);">' + (user.email || '') + '</div></div></div></td><td style="color:var(--g);font-weight:600;">' + (b.playerName || '—') + '</td><td style="color:var(--gr);font-size:.72rem;">' + (b.playerClub || '—') + '</td><td style="font-size:.72rem;">' + (b.eventDate || '—') + '</td><td style="font-size:.72rem;">' + (b.eventType || '—') + '</td><td style="color:var(--g);font-size:.72rem;">€' + (b.playerValue || '—') + '</td><td style="font-size:.68rem;color:var(--gr);">' + dateStr + '</td></tr>';
                 }).join('');
               });
           } else {
@@ -4520,246 +5271,10 @@
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-  <script>
-// ========================================
-// ProKick Network — Firebase Integration
-// ========================================
-// IMPORTANT: Replace the config below with YOUR Firebase project config.
-// 1. Go to https://console.firebase.google.com
-// 2. Create a project → Add Web App → Copy config
-// 3. Enable Email/Password in Authentication → Sign-in method
-// 4. Create Firestore Database in test mode
-
-var firebaseConfig = {
-    apiKey: "AIzaSyCYzmlSkF_uHnImRbWVv1VNOZgMDawiMyo",
-    authDomain: "prokick-network.firebaseapp.com",
-    projectId: "prokick-network",
-    storageBucket: "prokick-network.firebasestorage.app",
-    messagingSenderId: "264063703138",
-    appId: "1:264063703138:web:93c6e15519817119f0993b"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-var auth = firebase.auth();
-var db = firebase.firestore();
-
-// ========================================
-// Override doLogin — Firebase Email/Password
-// ========================================
-function doLogin() {
-    var e = document.getElementById('le').value.trim();
-    var p = document.getElementById('lp').value;
-    var err = document.getElementById('lerr');
-
-    if (!e || !p) {
-        err.style.display = 'block';
-        err.textContent = 'Veuillez remplir tous les champs.';
-        return;
-    }
-    err.style.display = 'none';
-
-    // Disable button while processing
-    var btn = document.querySelector('#lf .abtn');
-    btn.textContent = 'Connexion...';
-    btn.disabled = true;
-
-    auth.signInWithEmailAndPassword(e, p)
-        .then(function (userCredential) {
-            var user = userCredential.user;
-            // Fetch display name from Firestore
-            db.collection('users').doc(user.uid).get().then(function (doc) {
-                var name = 'Utilisateur';
-                if (doc.exists && doc.data().name) {
-                    name = doc.data().name.split(' ')[0];
-                }
-                enterApp(name, user.email || "");
-            }).catch(function () {
-                enterApp(e.split('@')[0], e);
-            });
-        })
-        .catch(function (error) {
-            err.style.display = 'block';
-            switch (error.code) {
-                case 'auth/user-not-found':
-                    err.textContent = 'Aucun compte trouvé avec cet email.';
-                    break;
-                case 'auth/wrong-password':
-                    err.textContent = 'Mot de passe incorrect.';
-                    break;
-                case 'auth/invalid-email':
-                    err.textContent = 'Adresse email invalide.';
-                    break;
-                case 'auth/too-many-requests':
-                    err.textContent = 'Trop de tentatives. Réessayez plus tard.';
-                    break;
-                default:
-                    err.textContent = 'Erreur de connexion: ' + error.message;
-            }
-            btn.textContent = 'Se Connecter →';
-            btn.disabled = false;
-        });
-}
-
-// ========================================
-// Override doSignup — Firebase Create Account
-// ========================================
-function doSignup() {
-    var n = document.getElementById('sn').value.trim();
-    var e = document.getElementById('se').value.trim();
-    var p = document.getElementById('sp').value;
-    var err = document.getElementById('serr');
-
-    if (!n || !e || !p) {
-        err.style.display = 'block';
-        err.textContent = 'Veuillez remplir tous les champs.';
-        return;
-    }
-    if (p.length < 6) {
-        err.style.display = 'block';
-        err.textContent = 'Le mot de passe doit contenir au moins 6 caractères.';
-        return;
-    }
-    err.style.display = 'none';
-
-    var btn = document.querySelector('#sf .abtn');
-    btn.textContent = 'Création...';
-    btn.disabled = true;
-
-    auth.createUserWithEmailAndPassword(e, p)
-        .then(function (userCredential) {
-            var user = userCredential.user;
-            // Save user profile to Firestore
-            return db.collection('users').doc(user.uid).set({
-                name: n,
-                email: e,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
-            }).then(function () {
-                enterApp(n.split(' ')[0], e);
-            });
-        })
-        .catch(function (error) {
-            err.style.display = 'block';
-            switch (error.code) {
-                case 'auth/email-already-in-use':
-                    err.textContent = 'Cet email est déjà utilisé.';
-                    break;
-                case 'auth/invalid-email':
-                    err.textContent = 'Adresse email invalide.';
-                    break;
-                case 'auth/weak-password':
-                    err.textContent = 'Mot de passe trop faible (6+ caractères).';
-                    break;
-                default:
-                    err.textContent = 'Erreur: ' + error.message;
-            }
-            btn.textContent = 'Créer un Compte →';
-            btn.disabled = false;
-        });
-}
-
-// ========================================
-// Guest mode (no Firebase required)
-// ========================================
-function guestIn() {
-    enterApp('Invité');
-}
-
-// ========================================
-// Logout
-// ========================================
-function doLogout() {
-    auth.signOut().then(function () {
-        // Return to auth page
-        document.querySelectorAll('.page').forEach(function (p) { p.classList.remove('active'); });
-        document.getElementById('auth-page').style.display = '';
-        document.getElementById('auth-page').classList.add('active');
-        document.getElementById('mnav').style.display = 'none';
-        document.getElementById('nua').classList.remove('show');
-        // Clear form fields
-        ['le', 'lp', 'sn', 'se', 'sp'].forEach(function (id) {
-            var el = document.getElementById(id);
-            if (el) el.value = '';
-        });
-    });
-}
-
-// ========================================
-// Auto-login on page load (auth state persistence)
-// ========================================
-auth.onAuthStateChanged(function (user) {
-    if (user) {
-        // User is signed in — skip auth page
-        db.collection('users').doc(user.uid).get().then(function (doc) {
-            var name = 'Utilisateur';
-            if (doc.exists && doc.data().name) {
-                name = doc.data().name.split(' ')[0];
-            }
-            enterApp(name, user.email || "");
-        }).catch(function () {
-            enterApp(user.email ? user.email.split('@')[0] : 'Utilisateur', user.email || '');
-        });
-    }
-});
-
-// ========================================
-// Save booking to Firestore (enhanced submitForm)
-// ========================================
-var originalSubmitForm = typeof submitForm === 'function' ? submitForm : null;
-
-function submitFormWithFirebase() {
-    var n = document.getElementById('fn').value.trim();
-    var e = document.getElementById('fe').value.trim();
-    var d = document.getElementById('fd').value;
-    var t = document.getElementById('ft').value;
-
-    if (!n || !e || !sn || !d || !t) {
-        var btn = document.getElementById('sbtn');
-        btn.style.background = 'linear-gradient(135deg,#e63946,#c0392b)';
-        btn.textContent = 'Remplissez tous les champs !';
-        setTimeout(function () { btn.style.background = ''; btn.textContent = '⚽ Envoyer la Demande →'; }, 2000);
-        return;
-    }
-
-    var ref = 'PKN-' + Math.floor(100000 + Math.random() * 900000);
-
-    // Save to Firestore if user is logged in
-    var user = auth.currentUser;
-    if (user) {
-        db.collection('bookings').add({
-            userId: user.uid,
-            userEmail: user.email || '',
-            playerName: sn,
-            playerValue: sv,
-            playerWage: sw,
-            playerClub: sc,
-            bookerName: n,
-            bookerEmail: e,
-            eventDate: d,
-            eventType: t,
-            reference: ref,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(function () {
-            console.log('Réservation enregistrée dans Firestore');
-        }).catch(function (err) {
-            console.error('Erreur Firestore:', err);
-        });
-    }
-
-    // Show confirmation modal
-    document.getElementById('m-pl').textContent = sn;
-    document.getElementById('m-nm').textContent = n;
-    document.getElementById('m-dt').textContent = d;
-    document.getElementById('m-ty').textContent = t;
-    document.getElementById('m-vl').textContent = '€' + sv;
-    document.getElementById('m-wg').textContent = '€' + sw;
-    document.getElementById('m-rf').textContent = ref;
-    document.getElementById('modal').classList.add('on');
-    confetti();
-}
-
-// Replace the original submitForm
-submitForm = submitFormWithFirebase;
-  </script>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- ProKick Firebase + Email Integration -->
+  <script src="firebase-app.js"></script>
 </body>
+
 </html>
