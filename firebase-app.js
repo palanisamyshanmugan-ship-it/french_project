@@ -84,12 +84,16 @@ function validateOTP(email, code) {
 
 // ── EmailJS senders — always wait for SDK to be ready first ───────────────
 function sendOTPEmail(toEmail, toName, otpCode) {
+    console.log('[EmailJS DEBUG] Sending OTP to:', toEmail, '| name:', toName, '| code:', otpCode);
     return _emailjsReady.then(function () {
-        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OTP, {
+        var params = {
+            email: toEmail,
             to_email: toEmail,
             to_name: toName,
             otp_code: otpCode
-        });
+        };
+        console.log('[EmailJS DEBUG] Template params:', JSON.stringify(params));
+        return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_OTP, params);
     });
 }
 function sendBookingEmail(toEmail, toName, params) {
