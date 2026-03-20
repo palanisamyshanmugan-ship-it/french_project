@@ -1,27 +1,3 @@
-// ========================================
-// ProKick Network — Firebase Integration (UPGRADED)
-// ========================================
-// Features:
-//   1. Email existence check before OTP (Abstract API — optional)
-//   2. OTP email verification on signup  (EmailJS)
-//   3. Booking confirmation email        (EmailJS)
-//   4. Forgot password / reset link      (Firebase)
-//
-// ── SETUP ─────────────────────────────────────────────────────────────────
-// Fill in the 4 EmailJS values below (required for OTP + booking emails).
-// Optionally fill ABSTRACT_API_KEY to validate email existence before OTP.
-// Free plan: 100 checks/month → https://www.abstractapi.com
-//
-// ── EMAILJS TEMPLATE VARIABLES ────────────────────────────────────────────
-// OTP template:
-//   {{to_email}}, {{to_name}}, {{otp_code}}
-//
-// Booking template:
-//   {{to_email}}, {{to_name}}, {{player_name}},
-//   {{event_date}}, {{event_type}}, {{reference}},
-//   {{player_value}}, {{player_wage}}
-// ==========================================================================
-
 // ── Fill these in ──────────────────────────────────────────────────────────
 var EMAILJS_PUBLIC_KEY = '1hxZfKRHt7tZwFtkh';
 var EMAILJS_SERVICE_ID = 'service_3p9oeko';
